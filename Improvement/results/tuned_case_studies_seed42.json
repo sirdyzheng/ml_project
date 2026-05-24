@@ -1,0 +1,646 @@
+{
+  "improved_vs_original": [
+    {
+      "question_id": "70b3e69b",
+      "question_type": "single-session-assistant",
+      "question": "I was going through our previous conversation about the impact of the political climate in Catalonia on its literature and music. Can you remind me of the example you gave of a Spanish-Catalan singer-songwriter who supports unity between Catalonia and Spain?",
+      "answer": "Manolo García",
+      "original_hit": 0.0,
+      "tuned_hit": 1.0,
+      "freq_hit": 0.0,
+      "original_recall": 0.0,
+      "tuned_recall": 1.0,
+      "freq_recall": 0.0,
+      "delta_recall_tuned_vs_original": 1.0,
+      "delta_recall_tuned_vs_freq": 1.0,
+      "original_top3": [
+        "How has the political climate of Catalonia influenced the themes and messages in Catalan literature and music?",
+        "among the most well-known in this genre. overall, it is clear that the political climate of catalonia has had a profound impact on the artistic output of the region. artists have been inspired to create work that speaks to their political b",
+        "Do you think there are any Catalan writers or musicians who take a different stance on the political situation in Catalonia? How do they express their views in their work?"
+      ],
+      "tuned_top3": [
+        "How has the political climate of Catalonia influenced the themes and messages in Catalan literature and music?",
+        "among the most well-known in this genre. overall, it is clear that the political climate of catalonia has had a profound impact on the artistic output of the region. artists have been inspired to create work that speaks to their political b",
+        "Do you think there are any Catalan writers or musicians who take a different stance on the political situation in Catalonia? How do they express their views in their work?"
+      ],
+      "freq_top3": [
+        "How has the political climate of Catalonia influenced the themes and messages in Catalan literature and music?",
+        "among the most well-known in this genre. overall, it is clear that the political climate of catalonia has had a profound impact on the artistic output of the region. artists have been inspired to create work that speaks to their political b",
+        "Do you think there are any Catalan writers or musicians who take a different stance on the political situation in Catalonia? How do they express their views in their work?"
+      ]
+    },
+    {
+      "question_id": "6456829e",
+      "question_type": "multi-session",
+      "question": "How many plants did I initially plant for tomatoes and cucumbers?",
+      "answer": "8",
+      "original_hit": 1.0,
+      "tuned_hit": 1.0,
+      "freq_hit": 1.0,
+      "original_recall": 0.5,
+      "tuned_recall": 1.0,
+      "freq_recall": 1.0,
+      "delta_recall_tuned_vs_original": 0.5,
+      "delta_recall_tuned_vs_freq": 0.0,
+      "original_top3": [
+        "I'm excited to try this recipe. I've been harvesting cucumbers from my garden daily, and I think this will be a great way to preserve some of them. Do you have any suggestions on how to adjust the recipe for smaller batches, like if I just ",
+        "I'm looking for some recipe ideas that feature fresh tomatoes as the main ingredient.",
+        "I'm trying to plan out my meals for the week and was wondering if you have any recipe suggestions that feature cucumbers as the main ingredient? By the way, I've been growing my own cucumbers in my garden, and I've got 3 plants that are pro"
+      ],
+      "tuned_top3": [
+        "I'm excited to try this recipe. I've been harvesting cucumbers from my garden daily, and I think this will be a great way to preserve some of them. Do you have any suggestions on how to adjust the recipe for smaller batches, like if I just ",
+        "I'm looking for some recipe ideas that feature fresh tomatoes as the main ingredient.",
+        "I'm trying to plan out my meals for the week and was wondering if you have any recipe suggestions that feature cucumbers as the main ingredient? By the way, I've been growing my own cucumbers in my garden, and I've got 3 plants that are pro"
+      ],
+      "freq_top3": [
+        "I'm excited to try this recipe. I've been harvesting cucumbers from my garden daily, and I think this will be a great way to preserve some of them. Do you have any suggestions on how to adjust the recipe for smaller batches, like if I just ",
+        "I'm trying to plan out my meals for the week and was wondering if you have any recipe suggestions that feature cucumbers as the main ingredient? By the way, I've been growing my own cucumbers in my garden, and I've got 3 plants that are pro",
+        "Harvesting cucumbers daily is a great problem to have! Adjusting the recipe for smaller batches is easy, and I'm happy to help. Since you'll be making fewer pickles, you'll want to reduce the ingredient quantities accordingly. Here's a roug"
+      ]
+    },
+    {
+      "question_id": "gpt4_98f46fc6",
+      "question_type": "temporal-reasoning",
+      "question": "Which event did I participate in first, the charity gala or the charity bake sale?",
+      "answer": "I participated in the charity bake sale first.",
+      "original_hit": 0.0,
+      "tuned_hit": 1.0,
+      "freq_hit": 1.0,
+      "original_recall": 0.0,
+      "tuned_recall": 0.5,
+      "freq_recall": 0.5,
+      "delta_recall_tuned_vs_original": 0.5,
+      "delta_recall_tuned_vs_freq": 0.0,
+      "original_top3": [
+        "your charity's tone and style, and don't forget to include any necessary details, such as the location, date, and time of the event. Good luck with your charity bake sale, and I hope you raise lots of funds for your chosen charity!",
+        "of a larger community committed to making a difference. 3. **Create a sense of urgency**: By sharing your experience at the gala, you can create a sense of urgency and encourage people to donate before the 5K event. When you mention the gal",
+        "go directly towards [specific program or initiative]. Your support will help us [briefly describe the impact of the charity's work]. We're thrilled that you could join us for our bake sale and indulge in some delicious treats while supporti"
+      ],
+      "tuned_top3": [
+        "your charity's tone and style, and don't forget to include any necessary details, such as the location, date, and time of the event. Good luck with your charity bake sale, and I hope you raise lots of funds for your chosen charity!",
+        "of a larger community committed to making a difference. 3. **Create a sense of urgency**: By sharing your experience at the gala, you can create a sense of urgency and encourage people to donate before the 5K event. When you mention the gal",
+        "go directly towards [specific program or initiative]. Your support will help us [briefly describe the impact of the charity's work]. We're thrilled that you could join us for our bake sale and indulge in some delicious treats while supporti"
+      ],
+      "freq_top3": [
+        "your charity's tone and style, and don't forget to include any necessary details, such as the location, date, and time of the event. Good luck with your charity bake sale, and I hope you raise lots of funds for your chosen charity!",
+        "of a larger community committed to making a difference. 3. **Create a sense of urgency**: By sharing your experience at the gala, you can create a sense of urgency and encourage people to donate before the 5K event. When you mention the gal",
+        "What a great idea! Mentioning your charity gala attendance tonight can definitely help add context and credibility to your fundraising page. It shows that you're committed to the cause and willing to take action beyond just participating in"
+      ]
+    },
+    {
+      "question_id": "gpt4_88806d6e",
+      "question_type": "temporal-reasoning",
+      "question": "Who did I meet first, Mark and Sarah or Tom?",
+      "answer": "Tom",
+      "original_hit": 0.0,
+      "tuned_hit": 1.0,
+      "freq_hit": 1.0,
+      "original_recall": 0.0,
+      "tuned_recall": 0.5,
+      "freq_recall": 0.5,
+      "delta_recall_tuned_vs_original": 0.5,
+      "delta_recall_tuned_vs_freq": 0.0,
+      "original_top3": [
+        "Mark and Sarah mentioned they live in a small town near the mountains, but I don't recall the exact name. Is there a way to find it? We had dinner together at a seafood place near the beach, so I think I'd like to find something similar in ",
+        "also ask Mark and Sarah about the general region they live in (e.g., a specific state, mountain range, or proximity to a major city). This might help you narrow down your search.",
+        "I'd be happy to help! However, I would need a bit more information from you. Could you please provide me with the following details:\n\n1. The city or town where Mark and Sarah live?\n2. What type of cuisine are you in the mood for? (e.g. Ital"
+      ],
+      "tuned_top3": [
+        "Mark and Sarah mentioned they live in a small town near the mountains, but I don't recall the exact name. Is there a way to find it? We had dinner together at a seafood place near the beach, so I think I'd like to find something similar in ",
+        "also ask Mark and Sarah about the general region they live in (e.g., a specific state, mountain range, or proximity to a major city). This might help you narrow down your search.",
+        "I'd be happy to help! However, I would need a bit more information from you. Could you please provide me with the following details:\n\n1. The city or town where Mark and Sarah live?\n2. What type of cuisine are you in the mood for? (e.g. Ital"
+      ],
+      "freq_top3": [
+        "through generations. By asking Mark and Sarah about the local history and culture, you'll not only learn more about their hometown but also demonstrate your interest in their community and your desire to connect with them on a deeper level.",
+        "Mark and Sarah mentioned they live in a small town near the mountains, but I don't recall the exact name. Is there a way to find it? We had dinner together at a seafood place near the beach, so I think I'd like to find something similar in ",
+        "also ask Mark and Sarah about the general region they live in (e.g., a specific state, mountain range, or proximity to a major city). This might help you narrow down your search."
+      ]
+    },
+    {
+      "question_id": "099778bb",
+      "question_type": "multi-session",
+      "question": "What percentage of leadership positions do women hold in the my company?",
+      "answer": "20%",
+      "original_hit": 1.0,
+      "tuned_hit": 1.0,
+      "freq_hit": 1.0,
+      "original_recall": 0.5,
+      "tuned_recall": 1.0,
+      "freq_recall": 0.5,
+      "delta_recall_tuned_vs_original": 0.5,
+      "delta_recall_tuned_vs_freq": 0.5,
+      "original_top3": [
+        "Wow, that's a lot of resources. I'll definitely check them out. I'm particularly interested in the diversity and inclusion reports. Do you think they'd have data on the demographics of our company's workforce, like the gender ratio? I recen",
+        "I'll definitely check out the diversity and inclusion report. I'm curious to see how our company's gender ratio compares to industry benchmarks. By the way, do you know if the report would also cover data on employee resource groups, such a",
+        "on diversity and inclusion initiatives. 5. **Diversity and Inclusion Reports**: Many companies publish annual diversity and inclusion reports that provide insights into their diversity metrics, initiatives, and goals. These reports can be f"
+      ],
+      "tuned_top3": [
+        "Many of the resources I mentioned earlier provide data on the representation of women in leadership positions, including the average percentage of leadership positions held by women in companies of a certain size and industry. Here are a fe",
+        "Wow, that's a lot of resources. I'll definitely check them out. I'm particularly interested in the diversity and inclusion reports. Do you think they'd have data on the demographics of our company's workforce, like the gender ratio? I recen",
+        "I'll definitely check out the diversity and inclusion report. I'm curious to see how our company's gender ratio compares to industry benchmarks. By the way, do you know if the report would also cover data on employee resource groups, such a"
+      ],
+      "freq_top3": [
+        "That's really helpful. I'll definitely check out some of those resources. I'm particularly interested in learning more about the representation of underrepresented groups in leadership positions. Do you think any of these resources would pr",
+        "percentage of women in leadership positions by industry and company size. 5. **Bloomberg's Gender-Equality Index**: Bloomberg's index provides data on the representation of women in leadership positions, including the average percentage of ",
+        "2. **McKinsey's Women in the Workplace Report**: This report provides data on the representation of women in leadership positions, including the average percentage of women in leadership positions by industry and company size. 3. **Deloitte"
+      ]
+    },
+    {
+      "question_id": "720133ac",
+      "question_type": "multi-session",
+      "question": "What is the total cost of Lola's vet visit and flea medication?",
+      "answer": "$75",
+      "original_hit": 1.0,
+      "tuned_hit": 1.0,
+      "freq_hit": 1.0,
+      "original_recall": 0.5,
+      "tuned_recall": 1.0,
+      "freq_recall": 0.5,
+      "delta_recall_tuned_vs_original": 0.5,
+      "delta_recall_tuned_vs_freq": 0.5,
+      "original_top3": [
+        "I'm thinking of checking out the prices of dog beds and pet grooming kits at Petco, maybe they have some good deals on them. By the way, I remember when I took Lola to the vet last week, the consultation fee was $50, which was a discounted ",
+        "I'm happy to help you with your shopping plans, but I have to clarify that I'm a large language model, I don't have personal experiences or interactions with individuals, so I didn't know you had a dog named Lola or a vet visit.\n\nHowever, I",
+        "I need to check the prices of dog beds and pet grooming kits at Petco, maybe they have some good deals on them."
+      ],
+      "tuned_top3": [
+        "I'm thinking of checking out the prices of dog beds and pet grooming kits at Petco, maybe they have some good deals on them. By the way, I remember when I took Lola to the vet last week, the consultation fee was $50, which was a discounted ",
+        "I'm happy to help you with your shopping plans, but I have to clarify that I'm a large language model, I don't have personal experiences or interactions with individuals, so I didn't know you had a dog named Lola or a vet visit.\n\nHowever, I",
+        "I need to check the prices of dog beds and pet grooming kits at Petco, maybe they have some good deals on them."
+      ],
+      "freq_top3": [
+        "I'm thinking of checking out the prices of dog beds and pet grooming kits at Petco, maybe they have some good deals on them. By the way, I remember when I took Lola to the vet last week, the consultation fee was $50, which was a discounted ",
+        "I'm happy to help you with your shopping plans, but I have to clarify that I'm a large language model, I don't have personal experiences or interactions with individuals, so I didn't know you had a dog named Lola or a vet visit.\n\nHowever, I",
+        "I need to check the prices of dog beds and pet grooming kits at Petco, maybe they have some good deals on them."
+      ]
+    },
+    {
+      "question_id": "a9f6b44c",
+      "question_type": "multi-session",
+      "question": "How many bikes did I service or plan to service in March?",
+      "answer": "2",
+      "original_hit": 1.0,
+      "tuned_hit": 1.0,
+      "freq_hit": 1.0,
+      "original_recall": 0.5,
+      "tuned_recall": 0.75,
+      "freq_recall": 0.5,
+      "delta_recall_tuned_vs_original": 0.25,
+      "delta_recall_tuned_vs_freq": 0.25,
+      "original_top3": [
+        "It sounds like you enjoy a good mix of technical and flowy trails! Navigating through rough sections can be a great challenge, but it's also satisfying to ride smoothly through them. And it's always exciting to explore new trails and discov",
+        "I'm happy to help you with the weather forecast! However, I'm a large language model, I don't have access to real-time weather information or your specific location. I'm not aware of your location, so I can't provide you with a accurate wea",
+        "I'm also thinking about getting some new bike accessories, such as a bike computer and a set of bike lights, which would be useful for my early morning rides."
+      ],
+      "tuned_top3": [
+        "I'm all set for the ride now. Thanks for the tips and recommendations. One more thing, can you tell me if there are any bike shops or repair services along the route in case I need any assistance?",
+        "It sounds like you enjoy a good mix of technical and flowy trails! Navigating through rough sections can be a great challenge, but it's also satisfying to ride smoothly through them. And it's always exciting to explore new trails and discov",
+        "That's great to know! I'll make sure to check out those bike shops along the route in case I need any assistance. Thanks again for all the helpful tips and recommendations. I'm really looking forward to this ride now!"
+      ],
+      "freq_top3": [
+        "It sounds like you enjoy a good mix of technical and flowy trails! Navigating through rough sections can be a great challenge, but it's also satisfying to ride smoothly through them. And it's always exciting to explore new trails and discov",
+        "I'm happy to help you with the weather forecast! However, I'm a large language model, I don't have access to real-time weather information or your specific location. I'm not aware of your location, so I can't provide you with a accurate wea",
+        "I'm also thinking about getting some new bike accessories, such as a bike computer and a set of bike lights, which would be useful for my early morning rides."
+      ]
+    }
+  ],
+  "regressed_vs_original": [
+    {
+      "question_id": "07741c45",
+      "question_type": "knowledge-update",
+      "question": "Where do I currently keep my old sneakers?",
+      "answer": "in a shoe rack in my closet",
+      "original_hit": 1.0,
+      "tuned_hit": 1.0,
+      "freq_hit": 1.0,
+      "original_recall": 1.0,
+      "tuned_recall": 0.5,
+      "freq_recall": 1.0,
+      "delta_recall_tuned_vs_original": -0.5,
+      "delta_recall_tuned_vs_freq": -0.5,
+      "original_top3": [
+        "from various brands, including some of the ones mentioned above. You can read reviews and compare prices to find the best option for you. Now, about organizing your closet... Congratulations on taking the initiative to tidy up! Storing your",
+        "That's really helpful! I'll definitely check out those online review platforms and ask around for recommendations. By the way, do you have any tips on how to keep the sneakers clean and fresh while they're stored?",
+        "To keep your sneaker clean and fresh while they're stored, here are some tips: 1. **Clean them before storing**: Make sure to clean your sneakers thoroughly before storing them. Remove any dirt, dust, or debris using a soft brush or cloth. "
+      ],
+      "tuned_top3": [
+        "from various brands, including some of the ones mentioned above. You can read reviews and compare prices to find the best option for you. Now, about organizing your closet... Congratulations on taking the initiative to tidy up! Storing your",
+        "That's really helpful! I'll definitely check out those online review platforms and ask around for recommendations. By the way, do you have any tips on how to keep the sneakers clean and fresh while they're stored?",
+        "To keep your sneaker clean and fresh while they're stored, here are some tips: 1. **Clean them before storing**: Make sure to clean your sneakers thoroughly before storing them. Remove any dirt, dust, or debris using a soft brush or cloth. "
+      ],
+      "freq_top3": [
+        "from various brands, including some of the ones mentioned above. You can read reviews and compare prices to find the best option for you. Now, about organizing your closet... Congratulations on taking the initiative to tidy up! Storing your",
+        "That's really helpful! I'll definitely check out those online review platforms and ask around for recommendations. By the way, do you have any tips on how to keep the sneakers clean and fresh while they're stored?",
+        "To keep your sneaker clean and fresh while they're stored, here are some tips: 1. **Clean them before storing**: Make sure to clean your sneakers thoroughly before storing them. Remove any dirt, dust, or debris using a soft brush or cloth. "
+      ]
+    },
+    {
+      "question_id": "5c40ec5b",
+      "question_type": "knowledge-update",
+      "question": "How many times have I met up with Alex from Germany?",
+      "answer": "We've met up twice.",
+      "original_hit": 1.0,
+      "tuned_hit": 0.0,
+      "freq_hit": 1.0,
+      "original_recall": 0.5,
+      "tuned_recall": 0.0,
+      "freq_recall": 1.0,
+      "delta_recall_tuned_vs_original": -0.5,
+      "delta_recall_tuned_vs_freq": -1.0,
+      "original_top3": [
+        "I'm going to ask Alex if he has any favorite indie rock bands or musicians. That way, we can bond over our shared love of music and maybe even attend a concert together when he's in town.",
+        "I'm also planning to meet up with my friend Alex from Germany while I'm in Berlin, we've met up twice before and it'll be great to catch up with him again. Do you know any good cafes or bars in Kreuzberg where we could grab a drink and chat",
+        "in your area and see if any of Alex's favorite bands or similar artists are playing when he's in town. Remember to keep the conversation light and fun, and don't be afraid to share your own musical tastes and recommendations. The goal is to"
+      ],
+      "tuned_top3": [
+        "I'm going to ask Alex if he has any favorite indie rock bands or musicians. That way, we can bond over our shared love of music and maybe even attend a concert together when he's in town.",
+        "I'm also planning to meet up with my friend Alex from Germany while I'm in Berlin, we've met up twice before and it'll be great to catch up with him again. Do you know any good cafes or bars in Kreuzberg where we could grab a drink and chat",
+        "in your area and see if any of Alex's favorite bands or similar artists are playing when he's in town. Remember to keep the conversation light and fun, and don't be afraid to share your own musical tastes and recommendations. The goal is to"
+      ],
+      "freq_top3": [
+        "I'm going to ask Alex if he has any favorite indie rock bands or musicians. That way, we can bond over our shared love of music and maybe even attend a concert together when he's in town.",
+        "I'm also planning to meet up with my friend Alex from Germany while I'm in Berlin, we've met up twice before and it'll be great to catch up with him again. Do you know any good cafes or bars in Kreuzberg where we could grab a drink and chat",
+        "in your area and see if any of Alex's favorite bands or similar artists are playing when he's in town. Remember to keep the conversation light and fun, and don't be afraid to share your own musical tastes and recommendations. The goal is to"
+      ]
+    },
+    {
+      "question_id": "4bc144e2",
+      "question_type": "multi-session",
+      "question": "How much did I spend on car wash and parking ticket?",
+      "answer": "$65",
+      "original_hit": 1.0,
+      "tuned_hit": 1.0,
+      "freq_hit": 1.0,
+      "original_recall": 1.0,
+      "tuned_recall": 0.5,
+      "freq_recall": 1.0,
+      "delta_recall_tuned_vs_original": -0.5,
+      "delta_recall_tuned_vs_freq": -0.5,
+      "original_top3": [
+        "* Projected monthly parking and toll cost: ? (please provide your estimated parking and toll expenses) Here's a revised estimate of your monthly car expenses: * Regular Maintenance: $20.83 (=$250 / 12 months) * Fuel: $120 * Wash and Detaili",
+        "month, with an average cost of $30 per fill-up) **Wash and Detailing**: * Projected quarterly wash and detailing cost: $45 (assuming you get your car washed and detailed every 3 months, with an average cost of $15 per wash) **Insurance**: *",
+        "a rough estimate of your monthly car expenses: * Regular Maintenance: $20.83 (=$250 / 12 months) * Fuel: $120 * Wash and Detailing: $15 (=$45 / 3 months) * Insurance: ? (please provide your insurance premium amount) * Registration and Licen"
+      ],
+      "tuned_top3": [
+        "* Projected monthly parking and toll cost: ? (please provide your estimated parking and toll expenses) Here's a revised estimate of your monthly car expenses: * Regular Maintenance: $20.83 (=$250 / 12 months) * Fuel: $120 * Wash and Detaili",
+        "month, with an average cost of $30 per fill-up) **Wash and Detailing**: * Projected quarterly wash and detailing cost: $45 (assuming you get your car washed and detailed every 3 months, with an average cost of $15 per wash) **Insurance**: *",
+        "a rough estimate of your monthly car expenses: * Regular Maintenance: $20.83 (=$250 / 12 months) * Fuel: $120 * Wash and Detailing: $15 (=$45 / 3 months) * Insurance: ? (please provide your insurance premium amount) * Registration and Licen"
+      ],
+      "freq_top3": [
+        "* Projected monthly parking and toll cost: ? (please provide your estimated parking and toll expenses) Here's a revised estimate of your monthly car expenses: * Regular Maintenance: $20.83 (=$250 / 12 months) * Fuel: $120 * Wash and Detaili",
+        "month, with an average cost of $30 per fill-up) **Wash and Detailing**: * Projected quarterly wash and detailing cost: $45 (assuming you get your car washed and detailed every 3 months, with an average cost of $15 per wash) **Insurance**: *",
+        "a rough estimate of your monthly car expenses: * Regular Maintenance: $20.83 (=$250 / 12 months) * Fuel: $120 * Wash and Detailing: $15 (=$45 / 3 months) * Insurance: ? (please provide your insurance premium amount) * Registration and Licen"
+      ]
+    },
+    {
+      "question_id": "gpt4_5501fe77",
+      "question_type": "multi-session",
+      "question": "Which social media platform did I gain the most followers on over the past month?",
+      "answer": "TikTok",
+      "original_hit": 1.0,
+      "tuned_hit": 1.0,
+      "freq_hit": 1.0,
+      "original_recall": 0.6666666666666666,
+      "tuned_recall": 0.3333333333333333,
+      "freq_recall": 0.6666666666666666,
+      "delta_recall_tuned_vs_original": -0.3333333333333333,
+      "delta_recall_tuned_vs_freq": -0.3333333333333333,
+      "original_top3": [
+        "I'm looking to drive engagement and increase my follower count on all platforms. I'm currently active on Instagram, Facebook, Twitter, and TikTok. My content themes vary, but I tend to post about my hobbies, interests, and daily life, as we",
+        "I'm trying to optimize my social media strategy and I was wondering if you could help me analyze my current performance. By the way, I just noticed that my Twitter follower count has jumped from 420 to 540 over the past month, which is real",
+        "social media platforms to drive traffic and attract new followers. * Use Facebook's built-in features, such as Facebook Messenger and Instagram, to cross-promote your content. By implementing these strategies, you'll be able to grow your Fa"
+      ],
+      "tuned_top3": [
+        "I'm looking to drive engagement and increase my follower count on all platforms. I'm currently active on Instagram, Facebook, Twitter, and TikTok. My content themes vary, but I tend to post about my hobbies, interests, and daily life, as we",
+        "I'm trying to optimize my social media strategy and I was wondering if you could help me analyze my current performance. By the way, I just noticed that my Twitter follower count has jumped from 420 to 540 over the past month, which is real",
+        "social media platforms to drive traffic and attract new followers. * Use Facebook's built-in features, such as Facebook Messenger and Instagram, to cross-promote your content. By implementing these strategies, you'll be able to grow your Fa"
+      ],
+      "freq_top3": [
+        "I'm looking to drive engagement and increase my follower count on all platforms. I'm currently active on Instagram, Facebook, Twitter, and TikTok. My content themes vary, but I tend to post about my hobbies, interests, and daily life, as we",
+        "I'm trying to optimize my social media strategy and I was wondering if you could help me analyze my current performance. By the way, I just noticed that my Twitter follower count has jumped from 420 to 540 over the past month, which is real",
+        "social media platforms to drive traffic and attract new followers. * Use Facebook's built-in features, such as Facebook Messenger and Instagram, to cross-promote your content. By implementing these strategies, you'll be able to grow your Fa"
+      ]
+    },
+    {
+      "question_id": "aae3761f",
+      "question_type": "multi-session",
+      "question": "How many hours in total did I spend driving to my three road trip destinations combined?",
+      "answer": "15 hours for getting to the three destinations (or 30 hours for the round trip)",
+      "original_hit": 1.0,
+      "tuned_hit": 0.0,
+      "freq_hit": 1.0,
+      "original_recall": 0.3333333333333333,
+      "tuned_recall": 0.0,
+      "freq_recall": 0.3333333333333333,
+      "delta_recall_tuned_vs_original": -0.3333333333333333,
+      "delta_recall_tuned_vs_freq": -0.3333333333333333,
+      "original_top3": [
+        "you interested in?** Do you prefer: * The most direct route (fastest time) * Scenic routes (e.g., coastal routes, national parks) * Avoiding highways/toll roads * Going through specific cities or landmarks 5. **Are there any specific road c",
+        "North America (approx. 1 hour) * Return to your hometown via I-80 (approx. 20 hours) All of these options offer stunning scenery, unique national parks, and exciting stops along the way. You can adjust the itinerary to fit your interests, t",
+        "I'm thinking of stopping at Topsail Island, NC for a quick lunch break and maybe a short walk on the beach. I've heard great things about the seafood there, and it'll be nice to stretch my legs after a few hours of driving. Plus, it's not t"
+      ],
+      "tuned_top3": [
+        "you interested in?** Do you prefer: * The most direct route (fastest time) * Scenic routes (e.g., coastal routes, national parks) * Avoiding highways/toll roads * Going through specific cities or landmarks 5. **Are there any specific road c",
+        "North America (approx. 1 hour) * Return to your hometown via I-80 (approx. 20 hours) All of these options offer stunning scenery, unique national parks, and exciting stops along the way. You can adjust the itinerary to fit your interests, t",
+        "I'm thinking of stopping at Topsail Island, NC for a quick lunch break and maybe a short walk on the beach. I've heard great things about the seafood there, and it'll be nice to stretch my legs after a few hours of driving. Plus, it's not t"
+      ],
+      "freq_top3": [
+        "you interested in?** Do you prefer: * The most direct route (fastest time) * Scenic routes (e.g., coastal routes, national parks) * Avoiding highways/toll roads * Going through specific cities or landmarks 5. **Are there any specific road c",
+        "North America (approx. 1 hour) * Return to your hometown via I-80 (approx. 20 hours) All of these options offer stunning scenery, unique national parks, and exciting stops along the way. You can adjust the itinerary to fit your interests, t",
+        "I'm thinking of stopping at Topsail Island, NC for a quick lunch break and maybe a short walk on the beach. I've heard great things about the seafood there, and it'll be nice to stretch my legs after a few hours of driving. Plus, it's not t"
+      ]
+    }
+  ],
+  "freq_better_than_tuned": [
+    {
+      "question_id": "71017276",
+      "question_type": "temporal-reasoning",
+      "question": "How many weeks ago did I meet up with my aunt and receive the crystal chandelier?",
+      "answer": "4",
+      "original_hit": 0.0,
+      "tuned_hit": 0.0,
+      "freq_hit": 1.0,
+      "original_recall": 0.0,
+      "tuned_recall": 0.0,
+      "freq_recall": 1.0,
+      "delta_recall_tuned_vs_original": 0.0,
+      "delta_recall_tuned_vs_freq": -1.0,
+      "original_top3": [
+        "your area who may have knowledge about your chandelier's history or be able to point you in the right direction. Good luck with your research, and I hope you uncover some fascinating stories about your great-grandmother's crystal chandelier",
+        "and appreciation of crystal. They may have resources or members who can provide guidance on your chandelier. 4. **Online Forums and Communities:** * Antique Trader: This online forum is dedicated to antique collectors and dealers. You can p",
+        "I'm also thinking of doing some research on the history of my great-grandmother's crystal chandelier. Do you know of any online resources or databases where I can find information about antique crystal chandeliers and their makers?"
+      ],
+      "tuned_top3": [
+        "your area who may have knowledge about your chandelier's history or be able to point you in the right direction. Good luck with your research, and I hope you uncover some fascinating stories about your great-grandmother's crystal chandelier",
+        "and appreciation of crystal. They may have resources or members who can provide guidance on your chandelier. 4. **Online Forums and Communities:** * Antique Trader: This online forum is dedicated to antique collectors and dealers. You can p",
+        "I'm also thinking of doing some research on the history of my great-grandmother's crystal chandelier. Do you know of any online resources or databases where I can find information about antique crystal chandeliers and their makers?"
+      ],
+      "freq_top3": [
+        "your area who may have knowledge about your chandelier's history or be able to point you in the right direction. Good luck with your research, and I hope you uncover some fascinating stories about your great-grandmother's crystal chandelier",
+        "the history of glassmaking and includes information on crystal chandeliers. * \"Crystal and Glass: A Collector's Guide\" by Judith Miller: This guide covers the history of crystal and glass, including chandeliers, and features many examples a",
+        "What a great idea! Researching the history of your great-grandmother's crystal chandelier can be a fascinating and rewarding experience. There are several online resources and databases that can help you uncover more about your chandelier's"
+      ]
+    },
+    {
+      "question_id": "5c40ec5b",
+      "question_type": "knowledge-update",
+      "question": "How many times have I met up with Alex from Germany?",
+      "answer": "We've met up twice.",
+      "original_hit": 1.0,
+      "tuned_hit": 0.0,
+      "freq_hit": 1.0,
+      "original_recall": 0.5,
+      "tuned_recall": 0.0,
+      "freq_recall": 1.0,
+      "delta_recall_tuned_vs_original": -0.5,
+      "delta_recall_tuned_vs_freq": -1.0,
+      "original_top3": [
+        "I'm going to ask Alex if he has any favorite indie rock bands or musicians. That way, we can bond over our shared love of music and maybe even attend a concert together when he's in town.",
+        "I'm also planning to meet up with my friend Alex from Germany while I'm in Berlin, we've met up twice before and it'll be great to catch up with him again. Do you know any good cafes or bars in Kreuzberg where we could grab a drink and chat",
+        "in your area and see if any of Alex's favorite bands or similar artists are playing when he's in town. Remember to keep the conversation light and fun, and don't be afraid to share your own musical tastes and recommendations. The goal is to"
+      ],
+      "tuned_top3": [
+        "I'm going to ask Alex if he has any favorite indie rock bands or musicians. That way, we can bond over our shared love of music and maybe even attend a concert together when he's in town.",
+        "I'm also planning to meet up with my friend Alex from Germany while I'm in Berlin, we've met up twice before and it'll be great to catch up with him again. Do you know any good cafes or bars in Kreuzberg where we could grab a drink and chat",
+        "in your area and see if any of Alex's favorite bands or similar artists are playing when he's in town. Remember to keep the conversation light and fun, and don't be afraid to share your own musical tastes and recommendations. The goal is to"
+      ],
+      "freq_top3": [
+        "I'm going to ask Alex if he has any favorite indie rock bands or musicians. That way, we can bond over our shared love of music and maybe even attend a concert together when he's in town.",
+        "I'm also planning to meet up with my friend Alex from Germany while I'm in Berlin, we've met up twice before and it'll be great to catch up with him again. Do you know any good cafes or bars in Kreuzberg where we could grab a drink and chat",
+        "in your area and see if any of Alex's favorite bands or similar artists are playing when he's in town. Remember to keep the conversation light and fun, and don't be afraid to share your own musical tastes and recommendations. The goal is to"
+      ]
+    },
+    {
+      "question_id": "07741c45",
+      "question_type": "knowledge-update",
+      "question": "Where do I currently keep my old sneakers?",
+      "answer": "in a shoe rack in my closet",
+      "original_hit": 1.0,
+      "tuned_hit": 1.0,
+      "freq_hit": 1.0,
+      "original_recall": 1.0,
+      "tuned_recall": 0.5,
+      "freq_recall": 1.0,
+      "delta_recall_tuned_vs_original": -0.5,
+      "delta_recall_tuned_vs_freq": -0.5,
+      "original_top3": [
+        "from various brands, including some of the ones mentioned above. You can read reviews and compare prices to find the best option for you. Now, about organizing your closet... Congratulations on taking the initiative to tidy up! Storing your",
+        "That's really helpful! I'll definitely check out those online review platforms and ask around for recommendations. By the way, do you have any tips on how to keep the sneakers clean and fresh while they're stored?",
+        "To keep your sneaker clean and fresh while they're stored, here are some tips: 1. **Clean them before storing**: Make sure to clean your sneakers thoroughly before storing them. Remove any dirt, dust, or debris using a soft brush or cloth. "
+      ],
+      "tuned_top3": [
+        "from various brands, including some of the ones mentioned above. You can read reviews and compare prices to find the best option for you. Now, about organizing your closet... Congratulations on taking the initiative to tidy up! Storing your",
+        "That's really helpful! I'll definitely check out those online review platforms and ask around for recommendations. By the way, do you have any tips on how to keep the sneakers clean and fresh while they're stored?",
+        "To keep your sneaker clean and fresh while they're stored, here are some tips: 1. **Clean them before storing**: Make sure to clean your sneakers thoroughly before storing them. Remove any dirt, dust, or debris using a soft brush or cloth. "
+      ],
+      "freq_top3": [
+        "from various brands, including some of the ones mentioned above. You can read reviews and compare prices to find the best option for you. Now, about organizing your closet... Congratulations on taking the initiative to tidy up! Storing your",
+        "That's really helpful! I'll definitely check out those online review platforms and ask around for recommendations. By the way, do you have any tips on how to keep the sneakers clean and fresh while they're stored?",
+        "To keep your sneaker clean and fresh while they're stored, here are some tips: 1. **Clean them before storing**: Make sure to clean your sneakers thoroughly before storing them. Remove any dirt, dust, or debris using a soft brush or cloth. "
+      ]
+    },
+    {
+      "question_id": "61f8c8f8",
+      "question_type": "multi-session",
+      "question": "How much faster did I finish the 5K run compared to my previous year's time?",
+      "answer": "10 minutes",
+      "original_hit": 0.0,
+      "tuned_hit": 0.0,
+      "freq_hit": 1.0,
+      "original_recall": 0.0,
+      "tuned_recall": 0.0,
+      "freq_recall": 0.5,
+      "delta_recall_tuned_vs_original": 0.0,
+      "delta_recall_tuned_vs_freq": -0.5,
+      "original_top3": [
+        "Congratulations on having a baseline 5K time! That's a great starting point. For a base building phase, the goal is to establish a consistent running habit, build your endurance, and increase your weekly mileage. To pace yourself, let's det",
+        "Creating a training plan for a 5K run can help you stay motivated, track your progress, and ensure you're adequately prepared for the big day. Here's a general 8-week training plan to get you started: **Assumptions:** * You're a beginner or",
+        "I'm training for a 5K run and I'm trying to create a training plan. Can you help me with that?"
+      ],
+      "tuned_top3": [
+        "Congratulations on having a baseline 5K time! That's a great starting point. For a base building phase, the goal is to establish a consistent running habit, build your endurance, and increase your weekly mileage. To pace yourself, let's det",
+        "Creating a training plan for a 5K run can help you stay motivated, track your progress, and ensure you're adequately prepared for the big day. Here's a general 8-week training plan to get you started: **Assumptions:** * You're a beginner or",
+        "I'm training for a 5K run and I'm trying to create a training plan. Can you help me with that?"
+      ],
+      "freq_top3": [
+        "Congratulations on having a baseline 5K time! That's a great starting point. For a base building phase, the goal is to establish a consistent running habit, build your endurance, and increase your weekly mileage. To pace yourself, let's det",
+        "Creating a training plan for a 5K run can help you stay motivated, track your progress, and ensure you're adequately prepared for the big day. Here's a general 8-week training plan to get you started: **Assumptions:** * You're a beginner or",
+        "I was thinking of starting with a base building phase, but I'm not sure how to pace myself. I've done a 5K run last year, but it took me 45 minutes to complete."
+      ]
+    },
+    {
+      "question_id": "4bc144e2",
+      "question_type": "multi-session",
+      "question": "How much did I spend on car wash and parking ticket?",
+      "answer": "$65",
+      "original_hit": 1.0,
+      "tuned_hit": 1.0,
+      "freq_hit": 1.0,
+      "original_recall": 1.0,
+      "tuned_recall": 0.5,
+      "freq_recall": 1.0,
+      "delta_recall_tuned_vs_original": -0.5,
+      "delta_recall_tuned_vs_freq": -0.5,
+      "original_top3": [
+        "* Projected monthly parking and toll cost: ? (please provide your estimated parking and toll expenses) Here's a revised estimate of your monthly car expenses: * Regular Maintenance: $20.83 (=$250 / 12 months) * Fuel: $120 * Wash and Detaili",
+        "month, with an average cost of $30 per fill-up) **Wash and Detailing**: * Projected quarterly wash and detailing cost: $45 (assuming you get your car washed and detailed every 3 months, with an average cost of $15 per wash) **Insurance**: *",
+        "a rough estimate of your monthly car expenses: * Regular Maintenance: $20.83 (=$250 / 12 months) * Fuel: $120 * Wash and Detailing: $15 (=$45 / 3 months) * Insurance: ? (please provide your insurance premium amount) * Registration and Licen"
+      ],
+      "tuned_top3": [
+        "* Projected monthly parking and toll cost: ? (please provide your estimated parking and toll expenses) Here's a revised estimate of your monthly car expenses: * Regular Maintenance: $20.83 (=$250 / 12 months) * Fuel: $120 * Wash and Detaili",
+        "month, with an average cost of $30 per fill-up) **Wash and Detailing**: * Projected quarterly wash and detailing cost: $45 (assuming you get your car washed and detailed every 3 months, with an average cost of $15 per wash) **Insurance**: *",
+        "a rough estimate of your monthly car expenses: * Regular Maintenance: $20.83 (=$250 / 12 months) * Fuel: $120 * Wash and Detailing: $15 (=$45 / 3 months) * Insurance: ? (please provide your insurance premium amount) * Registration and Licen"
+      ],
+      "freq_top3": [
+        "* Projected monthly parking and toll cost: ? (please provide your estimated parking and toll expenses) Here's a revised estimate of your monthly car expenses: * Regular Maintenance: $20.83 (=$250 / 12 months) * Fuel: $120 * Wash and Detaili",
+        "month, with an average cost of $30 per fill-up) **Wash and Detailing**: * Projected quarterly wash and detailing cost: $45 (assuming you get your car washed and detailed every 3 months, with an average cost of $15 per wash) **Insurance**: *",
+        "a rough estimate of your monthly car expenses: * Regular Maintenance: $20.83 (=$250 / 12 months) * Fuel: $120 * Wash and Detailing: $15 (=$45 / 3 months) * Insurance: ? (please provide your insurance premium amount) * Registration and Licen"
+      ]
+    },
+    {
+      "question_id": "6c49646a",
+      "question_type": "multi-session",
+      "question": "What is the total distance I covered in my four road trips?",
+      "answer": "3,000 miles",
+      "original_hit": 0.0,
+      "tuned_hit": 0.0,
+      "freq_hit": 1.0,
+      "original_recall": 0.0,
+      "tuned_recall": 0.0,
+      "freq_recall": 0.5,
+      "delta_recall_tuned_vs_original": 0.0,
+      "delta_recall_tuned_vs_freq": -0.5,
+      "original_top3": [
+        "I'm thinking of taking the scenic route and stopping at Loveland Pass and Copper Mountain. How's the road condition on CO-82 E, especially during this time of the year?",
+        "* Drive slowly and cautiously, especially on wet or snowy roads. * Use low gear when driving uphill to maintain control and avoid overheating your engine. * Avoid sudden movements, such as hard braking or sharp turns. * Keep a safe distance",
+        "I'm glad I could get some helpful information about the shuttle service. By the way, I was thinking about our Yellowstone trip last month, and I realized that we drove around 300 miles on the first day to reach Jackson, Wyoming. That was a "
+      ],
+      "tuned_top3": [
+        "I'm thinking of taking the scenic route and stopping at Loveland Pass and Copper Mountain. How's the road condition on CO-82 E, especially during this time of the year?",
+        "That sounds like an amazing trip to Yellowstone! 1,200 miles in 4 days is quite an adventure! I'm sure you must have seen some incredible sights. Now, let's plan your next road trip to Mount Rushmore! The most popular and scenic route from ",
+        "* Drive slowly and cautiously, especially on wet or snowy roads. * Use low gear when driving uphill to maintain control and avoid overheating your engine. * Avoid sudden movements, such as hard braking or sharp turns. * Keep a safe distance"
+      ],
+      "freq_top3": [
+        "I'm thinking of taking the scenic route and stopping at Loveland Pass and Copper Mountain. How's the road condition on CO-82 E, especially during this time of the year?",
+        "* Drive slowly and cautiously, especially on wet or snowy roads. * Use low gear when driving uphill to maintain control and avoid overheating your engine. * Avoid sudden movements, such as hard braking or sharp turns. * Keep a safe distance",
+        "I'm glad I could get some helpful information about the shuttle service. By the way, I was thinking about our Yellowstone trip last month, and I realized that we drove around 300 miles on the first day to reach Jackson, Wyoming. That was a "
+      ]
+    },
+    {
+      "question_id": "b9cfe692",
+      "question_type": "temporal-reasoning",
+      "question": "How long did I take to finish 'The Seven Husbands of Evelyn Hugo' and 'The Nightingale' combined?",
+      "answer": "5.5 weeks",
+      "original_hit": 1.0,
+      "tuned_hit": 1.0,
+      "freq_hit": 1.0,
+      "original_recall": 0.5,
+      "tuned_recall": 0.5,
+      "freq_recall": 1.0,
+      "delta_recall_tuned_vs_original": 0.0,
+      "delta_recall_tuned_vs_freq": -0.5,
+      "original_top3": [
+        "That's great that you've found a way to make the most of your daily commute! The audiobook version of \"All the Light We Cannot See\" is approximately 16 hours and 2 minutes long. Assuming you listen to it during your daily commute, let's est",
+        "I'm so glad you enjoyed \"The Seven Husbands of Evelyn Hugo\"! That's a fantastic book. I'd be happy to recommend some audiobooks that might scratch that same itch. Since you finished Evelyn Hugo in two and a half weeks, I'll suggest books wi",
+        "which is a bit longer than the three weeks it took you to finish \"The Nightingale\". However, there are a few factors to consider: 1. **Your listening speed**: If you prefer a faster listening speed, you can adjust the audiobook's playback s"
+      ],
+      "tuned_top3": [
+        "That's great that you've found a way to make the most of your daily commute! The audiobook version of \"All the Light We Cannot See\" is approximately 16 hours and 2 minutes long. Assuming you listen to it during your daily commute, let's est",
+        "I'm so glad you enjoyed \"The Seven Husbands of Evelyn Hugo\"! That's a fantastic book. I'd be happy to recommend some audiobooks that might scratch that same itch. Since you finished Evelyn Hugo in two and a half weeks, I'll suggest books wi",
+        "which is a bit longer than the three weeks it took you to finish \"The Nightingale\". However, there are a few factors to consider: 1. **Your listening speed**: If you prefer a faster listening speed, you can adjust the audiobook's playback s"
+      ],
+      "freq_top3": [
+        "I'm so glad you enjoyed \"The Seven Husbands of Evelyn Hugo\"! That's a fantastic book. I'd be happy to recommend some audiobooks that might scratch that same itch. Since you finished Evelyn Hugo in two and a half weeks, I'll suggest books wi",
+        "Scharer (15 hours, 42 minutes): A historical fiction novel based on the life of Lee Miller, a model and photographer, with a similar blend of art, love, and self-discovery. 9. **The Last Equation of Isaac Severy** by Nova Jacobs (14 hours, ",
+        "That's helpful. I think I can manage to finish it in 5-7 weeks. I might even try to listen to it a bit faster, like 1.25x speed, to finish it a bit sooner. Do you think the narrator's voice and style will be easy to follow at a faster speed"
+      ]
+    },
+    {
+      "question_id": "ce6d2d27",
+      "question_type": "knowledge-update",
+      "question": "What day of the week do I take a cocktail-making class?",
+      "answer": "Friday",
+      "original_hit": 0.0,
+      "tuned_hit": 0.0,
+      "freq_hit": 1.0,
+      "original_recall": 0.0,
+      "tuned_recall": 0.0,
+      "freq_recall": 0.5,
+      "delta_recall_tuned_vs_original": 0.0,
+      "delta_recall_tuned_vs_freq": -0.5,
+      "original_top3": [
+        "That sounds like a lot of fun! Thanks for the suggestions. I think I'll try out the Paloma and the Tequila Sour during my class on Friday. I've been wanting to experiment with grapefruit juice in cocktails, and the Paloma sounds like a grea",
+        "glass filled with ice and garnish with a cantaloupe ball and a sprig of mint. 6. **Spicy Mango Mule**: Mix tequila, mango puree, lime juice, ginger beer, and a dash of cayenne pepper. Serve in a copper mug with a lime wheel and a sprig of m",
+        "with the tropical flavors of the mango salsa. Now, about that cocktail-making class – how exciting! I hope you have a blast learning new recipes and experimenting with different flavors and techniques. Don't hesitate to reach out if you nee"
+      ],
+      "tuned_top3": [
+        "That sounds like a lot of fun! Thanks for the suggestions. I think I'll try out the Paloma and the Tequila Sour during my class on Friday. I've been wanting to experiment with grapefruit juice in cocktails, and the Paloma sounds like a grea",
+        "glass filled with ice and garnish with a cantaloupe ball and a sprig of mint. 6. **Spicy Mango Mule**: Mix tequila, mango puree, lime juice, ginger beer, and a dash of cayenne pepper. Serve in a copper mug with a lime wheel and a sprig of m",
+        "with the tropical flavors of the mango salsa. Now, about that cocktail-making class – how exciting! I hope you have a blast learning new recipes and experimenting with different flavors and techniques. Don't hesitate to reach out if you nee"
+      ],
+      "freq_top3": [
+        "That sounds like a lot of fun! Thanks for the suggestions. I think I'll try out the Paloma and the Tequila Sour during my class on Friday. I've been wanting to experiment with grapefruit juice in cocktails, and the Paloma sounds like a grea",
+        "glass filled with ice and garnish with a cantaloupe ball and a sprig of mint. 6. **Spicy Mango Mule**: Mix tequila, mango puree, lime juice, ginger beer, and a dash of cayenne pepper. Serve in a copper mug with a lime wheel and a sprig of m",
+        "with the tropical flavors of the mango salsa. Now, about that cocktail-making class – how exciting! I hope you have a blast learning new recipes and experimenting with different flavors and techniques. Don't hesitate to reach out if you nee"
+      ]
+    },
+    {
+      "question_id": "gpt4_5501fe77",
+      "question_type": "multi-session",
+      "question": "Which social media platform did I gain the most followers on over the past month?",
+      "answer": "TikTok",
+      "original_hit": 1.0,
+      "tuned_hit": 1.0,
+      "freq_hit": 1.0,
+      "original_recall": 0.6666666666666666,
+      "tuned_recall": 0.3333333333333333,
+      "freq_recall": 0.6666666666666666,
+      "delta_recall_tuned_vs_original": -0.3333333333333333,
+      "delta_recall_tuned_vs_freq": -0.3333333333333333,
+      "original_top3": [
+        "I'm looking to drive engagement and increase my follower count on all platforms. I'm currently active on Instagram, Facebook, Twitter, and TikTok. My content themes vary, but I tend to post about my hobbies, interests, and daily life, as we",
+        "I'm trying to optimize my social media strategy and I was wondering if you could help me analyze my current performance. By the way, I just noticed that my Twitter follower count has jumped from 420 to 540 over the past month, which is real",
+        "social media platforms to drive traffic and attract new followers. * Use Facebook's built-in features, such as Facebook Messenger and Instagram, to cross-promote your content. By implementing these strategies, you'll be able to grow your Fa"
+      ],
+      "tuned_top3": [
+        "I'm looking to drive engagement and increase my follower count on all platforms. I'm currently active on Instagram, Facebook, Twitter, and TikTok. My content themes vary, but I tend to post about my hobbies, interests, and daily life, as we",
+        "I'm trying to optimize my social media strategy and I was wondering if you could help me analyze my current performance. By the way, I just noticed that my Twitter follower count has jumped from 420 to 540 over the past month, which is real",
+        "social media platforms to drive traffic and attract new followers. * Use Facebook's built-in features, such as Facebook Messenger and Instagram, to cross-promote your content. By implementing these strategies, you'll be able to grow your Fa"
+      ],
+      "freq_top3": [
+        "I'm looking to drive engagement and increase my follower count on all platforms. I'm currently active on Instagram, Facebook, Twitter, and TikTok. My content themes vary, but I tend to post about my hobbies, interests, and daily life, as we",
+        "I'm trying to optimize my social media strategy and I was wondering if you could help me analyze my current performance. By the way, I just noticed that my Twitter follower count has jumped from 420 to 540 over the past month, which is real",
+        "social media platforms to drive traffic and attract new followers. * Use Facebook's built-in features, such as Facebook Messenger and Instagram, to cross-promote your content. By implementing these strategies, you'll be able to grow your Fa"
+      ]
+    },
+    {
+      "question_id": "aae3761f",
+      "question_type": "multi-session",
+      "question": "How many hours in total did I spend driving to my three road trip destinations combined?",
+      "answer": "15 hours for getting to the three destinations (or 30 hours for the round trip)",
+      "original_hit": 1.0,
+      "tuned_hit": 0.0,
+      "freq_hit": 1.0,
+      "original_recall": 0.3333333333333333,
+      "tuned_recall": 0.0,
+      "freq_recall": 0.3333333333333333,
+      "delta_recall_tuned_vs_original": -0.3333333333333333,
+      "delta_recall_tuned_vs_freq": -0.3333333333333333,
+      "original_top3": [
+        "you interested in?** Do you prefer: * The most direct route (fastest time) * Scenic routes (e.g., coastal routes, national parks) * Avoiding highways/toll roads * Going through specific cities or landmarks 5. **Are there any specific road c",
+        "North America (approx. 1 hour) * Return to your hometown via I-80 (approx. 20 hours) All of these options offer stunning scenery, unique national parks, and exciting stops along the way. You can adjust the itinerary to fit your interests, t",
+        "I'm thinking of stopping at Topsail Island, NC for a quick lunch break and maybe a short walk on the beach. I've heard great things about the seafood there, and it'll be nice to stretch my legs after a few hours of driving. Plus, it's not t"
+      ],
+      "tuned_top3": [
+        "you interested in?** Do you prefer: * The most direct route (fastest time) * Scenic routes (e.g., coastal routes, national parks) * Avoiding highways/toll roads * Going through specific cities or landmarks 5. **Are there any specific road c",
+        "North America (approx. 1 hour) * Return to your hometown via I-80 (approx. 20 hours) All of these options offer stunning scenery, unique national parks, and exciting stops along the way. You can adjust the itinerary to fit your interests, t",
+        "I'm thinking of stopping at Topsail Island, NC for a quick lunch break and maybe a short walk on the beach. I've heard great things about the seafood there, and it'll be nice to stretch my legs after a few hours of driving. Plus, it's not t"
+      ],
+      "freq_top3": [
+        "you interested in?** Do you prefer: * The most direct route (fastest time) * Scenic routes (e.g., coastal routes, national parks) * Avoiding highways/toll roads * Going through specific cities or landmarks 5. **Are there any specific road c",
+        "North America (approx. 1 hour) * Return to your hometown via I-80 (approx. 20 hours) All of these options offer stunning scenery, unique national parks, and exciting stops along the way. You can adjust the itinerary to fit your interests, t",
+        "I'm thinking of stopping at Topsail Island, NC for a quick lunch break and maybe a short walk on the beach. I've heard great things about the seafood there, and it'll be nice to stretch my legs after a few hours of driving. Plus, it's not t"
+      ]
+    }
+  ]
+}

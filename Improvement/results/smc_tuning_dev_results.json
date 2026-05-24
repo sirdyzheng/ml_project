@@ -1,0 +1,1282 @@
+[
+  {
+    "config": {
+      "name": "div_heavy_thr0.40_top5_auto",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.3,
+        "diversity": 0.3
+      },
+      "threshold": 0.4,
+      "promotion_top_k": 5,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.76,
+      "recall@6": 0.5966666666666667,
+      "contains": 0.32,
+      "latency": 0.01674349308013916,
+      "objective": 1.214
+    }
+  },
+  {
+    "config": {
+      "name": "baseline_thr0.40_top3_auto",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.4,
+        "diversity": 0.2
+      },
+      "threshold": 0.4,
+      "promotion_top_k": 3,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.76,
+      "recall@6": 0.6033333333333333,
+      "contains": 0.3,
+      "latency": 0.014076609611511231,
+      "objective": 1.212
+    }
+  },
+  {
+    "config": {
+      "name": "baseline_thr0.25_top3_auto",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.4,
+        "diversity": 0.2
+      },
+      "threshold": 0.25,
+      "promotion_top_k": 3,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.76,
+      "recall@6": 0.5966666666666667,
+      "contains": 0.3,
+      "latency": 0.014801054000854493,
+      "objective": 1.208
+    }
+  },
+  {
+    "config": {
+      "name": "baseline_thr0.30_top3_auto",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.4,
+        "diversity": 0.2
+      },
+      "threshold": 0.3,
+      "promotion_top_k": 3,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.76,
+      "recall@6": 0.5966666666666667,
+      "contains": 0.3,
+      "latency": 0.014870119094848634,
+      "objective": 1.208
+    }
+  },
+  {
+    "config": {
+      "name": "baseline_thr0.35_top3_auto",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.4,
+        "diversity": 0.2
+      },
+      "threshold": 0.35,
+      "promotion_top_k": 3,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.76,
+      "recall@6": 0.5966666666666667,
+      "contains": 0.3,
+      "latency": 0.01466209888458252,
+      "objective": 1.208
+    }
+  },
+  {
+    "config": {
+      "name": "rel_heavy_thr0.40_top3_auto",
+      "weights": {
+        "relevance": 0.5,
+        "reuse": 0.3,
+        "diversity": 0.2
+      },
+      "threshold": 0.4,
+      "promotion_top_k": 3,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.76,
+      "recall@6": 0.5966666666666667,
+      "contains": 0.3,
+      "latency": 0.0156874942779541,
+      "objective": 1.208
+    }
+  },
+  {
+    "config": {
+      "name": "div_heavy_thr0.40_top3_auto",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.3,
+        "diversity": 0.3
+      },
+      "threshold": 0.4,
+      "promotion_top_k": 3,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.76,
+      "recall@6": 0.5966666666666667,
+      "contains": 0.3,
+      "latency": 0.015236773490905763,
+      "objective": 1.208
+    }
+  },
+  {
+    "config": {
+      "name": "baseline_thr0.40_top3_hybrid",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.4,
+        "diversity": 0.2
+      },
+      "threshold": 0.4,
+      "promotion_top_k": 3,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.76,
+      "recall@6": 0.6033333333333333,
+      "contains": 0.28,
+      "latency": 0.014101309776306152,
+      "objective": 1.206
+    }
+  },
+  {
+    "config": {
+      "name": "baseline_thr0.25_top3_hybrid",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.4,
+        "diversity": 0.2
+      },
+      "threshold": 0.25,
+      "promotion_top_k": 3,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.76,
+      "recall@6": 0.5966666666666667,
+      "contains": 0.28,
+      "latency": 0.014617886543273926,
+      "objective": 1.202
+    }
+  },
+  {
+    "config": {
+      "name": "baseline_thr0.30_top3_hybrid",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.4,
+        "diversity": 0.2
+      },
+      "threshold": 0.3,
+      "promotion_top_k": 3,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.76,
+      "recall@6": 0.5966666666666667,
+      "contains": 0.28,
+      "latency": 0.014839334487915039,
+      "objective": 1.202
+    }
+  },
+  {
+    "config": {
+      "name": "baseline_thr0.35_top3_hybrid",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.4,
+        "diversity": 0.2
+      },
+      "threshold": 0.35,
+      "promotion_top_k": 3,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.76,
+      "recall@6": 0.5966666666666667,
+      "contains": 0.28,
+      "latency": 0.014512882232666016,
+      "objective": 1.202
+    }
+  },
+  {
+    "config": {
+      "name": "baseline_thr0.40_top5_auto",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.4,
+        "diversity": 0.2
+      },
+      "threshold": 0.4,
+      "promotion_top_k": 5,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.74,
+      "recall@6": 0.5933333333333333,
+      "contains": 0.3,
+      "latency": 0.0147493314743042,
+      "objective": 1.186
+    }
+  },
+  {
+    "config": {
+      "name": "div_heavy_thr0.25_top3_auto",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.3,
+        "diversity": 0.3
+      },
+      "threshold": 0.25,
+      "promotion_top_k": 3,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.74,
+      "recall@6": 0.5833333333333333,
+      "contains": 0.32,
+      "latency": 0.015667595863342286,
+      "objective": 1.186
+    }
+  },
+  {
+    "config": {
+      "name": "div_heavy_thr0.30_top3_auto",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.3,
+        "diversity": 0.3
+      },
+      "threshold": 0.3,
+      "promotion_top_k": 3,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.74,
+      "recall@6": 0.5833333333333333,
+      "contains": 0.32,
+      "latency": 0.016322927474975588,
+      "objective": 1.186
+    }
+  },
+  {
+    "config": {
+      "name": "div_heavy_thr0.35_top3_auto",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.3,
+        "diversity": 0.3
+      },
+      "threshold": 0.35,
+      "promotion_top_k": 3,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.74,
+      "recall@6": 0.5833333333333333,
+      "contains": 0.32,
+      "latency": 0.01658993721008301,
+      "objective": 1.186
+    }
+  },
+  {
+    "config": {
+      "name": "rel_heavy_thr0.25_top3_auto",
+      "weights": {
+        "relevance": 0.5,
+        "reuse": 0.3,
+        "diversity": 0.2
+      },
+      "threshold": 0.25,
+      "promotion_top_k": 3,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.74,
+      "recall@6": 0.5766666666666667,
+      "contains": 0.32,
+      "latency": 0.015717382431030272,
+      "objective": 1.182
+    }
+  },
+  {
+    "config": {
+      "name": "rel_heavy_thr0.30_top3_auto",
+      "weights": {
+        "relevance": 0.5,
+        "reuse": 0.3,
+        "diversity": 0.2
+      },
+      "threshold": 0.3,
+      "promotion_top_k": 3,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.74,
+      "recall@6": 0.5766666666666667,
+      "contains": 0.32,
+      "latency": 0.01627103805541992,
+      "objective": 1.182
+    }
+  },
+  {
+    "config": {
+      "name": "rel_heavy_thr0.35_top3_auto",
+      "weights": {
+        "relevance": 0.5,
+        "reuse": 0.3,
+        "diversity": 0.2
+      },
+      "threshold": 0.35,
+      "promotion_top_k": 3,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.74,
+      "recall@6": 0.5766666666666667,
+      "contains": 0.32,
+      "latency": 0.015986008644104002,
+      "objective": 1.182
+    }
+  },
+  {
+    "config": {
+      "name": "div_heavy_thr0.25_top3_hybrid",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.3,
+        "diversity": 0.3
+      },
+      "threshold": 0.25,
+      "promotion_top_k": 3,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.74,
+      "recall@6": 0.5833333333333333,
+      "contains": 0.3,
+      "latency": 0.01595142364501953,
+      "objective": 1.18
+    }
+  },
+  {
+    "config": {
+      "name": "div_heavy_thr0.30_top3_hybrid",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.3,
+        "diversity": 0.3
+      },
+      "threshold": 0.3,
+      "promotion_top_k": 3,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.74,
+      "recall@6": 0.5833333333333333,
+      "contains": 0.3,
+      "latency": 0.016327972412109374,
+      "objective": 1.18
+    }
+  },
+  {
+    "config": {
+      "name": "div_heavy_thr0.35_top3_hybrid",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.3,
+        "diversity": 0.3
+      },
+      "threshold": 0.35,
+      "promotion_top_k": 3,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.74,
+      "recall@6": 0.5833333333333333,
+      "contains": 0.3,
+      "latency": 0.016503205299377443,
+      "objective": 1.18
+    }
+  },
+  {
+    "config": {
+      "name": "rel_heavy_thr0.25_top3_hybrid",
+      "weights": {
+        "relevance": 0.5,
+        "reuse": 0.3,
+        "diversity": 0.2
+      },
+      "threshold": 0.25,
+      "promotion_top_k": 3,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.74,
+      "recall@6": 0.5766666666666667,
+      "contains": 0.3,
+      "latency": 0.015950016975402832,
+      "objective": 1.176
+    }
+  },
+  {
+    "config": {
+      "name": "rel_heavy_thr0.30_top3_hybrid",
+      "weights": {
+        "relevance": 0.5,
+        "reuse": 0.3,
+        "diversity": 0.2
+      },
+      "threshold": 0.3,
+      "promotion_top_k": 3,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.74,
+      "recall@6": 0.5766666666666667,
+      "contains": 0.3,
+      "latency": 0.01595799446105957,
+      "objective": 1.176
+    }
+  },
+  {
+    "config": {
+      "name": "rel_heavy_thr0.35_top3_hybrid",
+      "weights": {
+        "relevance": 0.5,
+        "reuse": 0.3,
+        "diversity": 0.2
+      },
+      "threshold": 0.35,
+      "promotion_top_k": 3,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.74,
+      "recall@6": 0.5766666666666667,
+      "contains": 0.3,
+      "latency": 0.016017985343933106,
+      "objective": 1.176
+    }
+  },
+  {
+    "config": {
+      "name": "div_heavy_thr0.40_top5_hybrid",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.3,
+        "diversity": 0.3
+      },
+      "threshold": 0.4,
+      "promotion_top_k": 5,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.74,
+      "recall@6": 0.5766666666666667,
+      "contains": 0.3,
+      "latency": 0.01674685001373291,
+      "objective": 1.176
+    }
+  },
+  {
+    "config": {
+      "name": "rel_heavy_thr0.40_top3_hybrid",
+      "weights": {
+        "relevance": 0.5,
+        "reuse": 0.3,
+        "diversity": 0.2
+      },
+      "threshold": 0.4,
+      "promotion_top_k": 3,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.74,
+      "recall@6": 0.5766666666666667,
+      "contains": 0.28,
+      "latency": 0.016341586112976075,
+      "objective": 1.17
+    }
+  },
+  {
+    "config": {
+      "name": "div_heavy_thr0.40_top3_hybrid",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.3,
+        "diversity": 0.3
+      },
+      "threshold": 0.4,
+      "promotion_top_k": 3,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.74,
+      "recall@6": 0.5766666666666667,
+      "contains": 0.28,
+      "latency": 0.01544367790222168,
+      "objective": 1.17
+    }
+  },
+  {
+    "config": {
+      "name": "baseline_thr0.35_top5_auto",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.4,
+        "diversity": 0.2
+      },
+      "threshold": 0.35,
+      "promotion_top_k": 5,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.72,
+      "recall@6": 0.57,
+      "contains": 0.32,
+      "latency": 0.016315469741821288,
+      "objective": 1.158
+    }
+  },
+  {
+    "config": {
+      "name": "rel_heavy_thr0.25_top5_auto",
+      "weights": {
+        "relevance": 0.5,
+        "reuse": 0.3,
+        "diversity": 0.2
+      },
+      "threshold": 0.25,
+      "promotion_top_k": 5,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.72,
+      "recall@6": 0.57,
+      "contains": 0.32,
+      "latency": 0.018241024017333983,
+      "objective": 1.158
+    }
+  },
+  {
+    "config": {
+      "name": "rel_heavy_thr0.30_top5_auto",
+      "weights": {
+        "relevance": 0.5,
+        "reuse": 0.3,
+        "diversity": 0.2
+      },
+      "threshold": 0.3,
+      "promotion_top_k": 5,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.72,
+      "recall@6": 0.57,
+      "contains": 0.32,
+      "latency": 0.018846755027770997,
+      "objective": 1.158
+    }
+  },
+  {
+    "config": {
+      "name": "rel_heavy_thr0.35_top5_auto",
+      "weights": {
+        "relevance": 0.5,
+        "reuse": 0.3,
+        "diversity": 0.2
+      },
+      "threshold": 0.35,
+      "promotion_top_k": 5,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.72,
+      "recall@6": 0.57,
+      "contains": 0.32,
+      "latency": 0.018073983192443847,
+      "objective": 1.158
+    }
+  },
+  {
+    "config": {
+      "name": "rel_heavy_thr0.40_top5_auto",
+      "weights": {
+        "relevance": 0.5,
+        "reuse": 0.3,
+        "diversity": 0.2
+      },
+      "threshold": 0.4,
+      "promotion_top_k": 5,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.72,
+      "recall@6": 0.57,
+      "contains": 0.32,
+      "latency": 0.017859692573547362,
+      "objective": 1.158
+    }
+  },
+  {
+    "config": {
+      "name": "div_heavy_thr0.25_top5_auto",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.3,
+        "diversity": 0.3
+      },
+      "threshold": 0.25,
+      "promotion_top_k": 5,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.72,
+      "recall@6": 0.57,
+      "contains": 0.32,
+      "latency": 0.018798584938049315,
+      "objective": 1.158
+    }
+  },
+  {
+    "config": {
+      "name": "div_heavy_thr0.30_top5_auto",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.3,
+        "diversity": 0.3
+      },
+      "threshold": 0.3,
+      "promotion_top_k": 5,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.72,
+      "recall@6": 0.57,
+      "contains": 0.32,
+      "latency": 0.01865593910217285,
+      "objective": 1.158
+    }
+  },
+  {
+    "config": {
+      "name": "div_heavy_thr0.35_top5_auto",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.3,
+        "diversity": 0.3
+      },
+      "threshold": 0.35,
+      "promotion_top_k": 5,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.72,
+      "recall@6": 0.57,
+      "contains": 0.32,
+      "latency": 0.020775508880615235,
+      "objective": 1.158
+    }
+  },
+  {
+    "config": {
+      "name": "baseline_thr0.40_top5_hybrid",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.4,
+        "diversity": 0.2
+      },
+      "threshold": 0.4,
+      "promotion_top_k": 5,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.72,
+      "recall@6": 0.5733333333333333,
+      "contains": 0.28,
+      "latency": 0.015172348022460938,
+      "objective": 1.148
+    }
+  },
+  {
+    "config": {
+      "name": "baseline_thr0.25_top5_auto",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.4,
+        "diversity": 0.2
+      },
+      "threshold": 0.25,
+      "promotion_top_k": 5,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.7,
+      "recall@6": 0.55,
+      "contains": 0.32,
+      "latency": 0.017149610519409178,
+      "objective": 1.1260000000000001
+    }
+  },
+  {
+    "config": {
+      "name": "baseline_thr0.30_top5_auto",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.4,
+        "diversity": 0.2
+      },
+      "threshold": 0.3,
+      "promotion_top_k": 5,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.7,
+      "recall@6": 0.55,
+      "contains": 0.32,
+      "latency": 0.017469635009765627,
+      "objective": 1.1260000000000001
+    }
+  },
+  {
+    "config": {
+      "name": "rel_strong_thr0.25_top5_auto",
+      "weights": {
+        "relevance": 0.6,
+        "reuse": 0.2,
+        "diversity": 0.2
+      },
+      "threshold": 0.25,
+      "promotion_top_k": 5,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.7,
+      "recall@6": 0.55,
+      "contains": 0.32,
+      "latency": 0.02151991844177246,
+      "objective": 1.1260000000000001
+    }
+  },
+  {
+    "config": {
+      "name": "rel_strong_thr0.30_top5_auto",
+      "weights": {
+        "relevance": 0.6,
+        "reuse": 0.2,
+        "diversity": 0.2
+      },
+      "threshold": 0.3,
+      "promotion_top_k": 5,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.7,
+      "recall@6": 0.55,
+      "contains": 0.32,
+      "latency": 0.021920242309570313,
+      "objective": 1.1260000000000001
+    }
+  },
+  {
+    "config": {
+      "name": "rel_strong_thr0.35_top5_auto",
+      "weights": {
+        "relevance": 0.6,
+        "reuse": 0.2,
+        "diversity": 0.2
+      },
+      "threshold": 0.35,
+      "promotion_top_k": 5,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.7,
+      "recall@6": 0.55,
+      "contains": 0.32,
+      "latency": 0.01920511245727539,
+      "objective": 1.1260000000000001
+    }
+  },
+  {
+    "config": {
+      "name": "rel_strong_thr0.40_top5_auto",
+      "weights": {
+        "relevance": 0.6,
+        "reuse": 0.2,
+        "diversity": 0.2
+      },
+      "threshold": 0.4,
+      "promotion_top_k": 5,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.7,
+      "recall@6": 0.55,
+      "contains": 0.32,
+      "latency": 0.018389067649841308,
+      "objective": 1.1260000000000001
+    }
+  },
+  {
+    "config": {
+      "name": "baseline_thr0.25_top5_hybrid",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.4,
+        "diversity": 0.2
+      },
+      "threshold": 0.25,
+      "promotion_top_k": 5,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.7,
+      "recall@6": 0.55,
+      "contains": 0.3,
+      "latency": 0.01712700366973877,
+      "objective": 1.12
+    }
+  },
+  {
+    "config": {
+      "name": "baseline_thr0.30_top5_hybrid",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.4,
+        "diversity": 0.2
+      },
+      "threshold": 0.3,
+      "promotion_top_k": 5,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.7,
+      "recall@6": 0.55,
+      "contains": 0.3,
+      "latency": 0.017263164520263673,
+      "objective": 1.12
+    }
+  },
+  {
+    "config": {
+      "name": "baseline_thr0.35_top5_hybrid",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.4,
+        "diversity": 0.2
+      },
+      "threshold": 0.35,
+      "promotion_top_k": 5,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.7,
+      "recall@6": 0.55,
+      "contains": 0.3,
+      "latency": 0.016312294006347657,
+      "objective": 1.12
+    }
+  },
+  {
+    "config": {
+      "name": "rel_heavy_thr0.25_top5_hybrid",
+      "weights": {
+        "relevance": 0.5,
+        "reuse": 0.3,
+        "diversity": 0.2
+      },
+      "threshold": 0.25,
+      "promotion_top_k": 5,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.7,
+      "recall@6": 0.55,
+      "contains": 0.3,
+      "latency": 0.019462809562683106,
+      "objective": 1.12
+    }
+  },
+  {
+    "config": {
+      "name": "rel_heavy_thr0.30_top5_hybrid",
+      "weights": {
+        "relevance": 0.5,
+        "reuse": 0.3,
+        "diversity": 0.2
+      },
+      "threshold": 0.3,
+      "promotion_top_k": 5,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.7,
+      "recall@6": 0.55,
+      "contains": 0.3,
+      "latency": 0.01845670700073242,
+      "objective": 1.12
+    }
+  },
+  {
+    "config": {
+      "name": "rel_heavy_thr0.35_top5_hybrid",
+      "weights": {
+        "relevance": 0.5,
+        "reuse": 0.3,
+        "diversity": 0.2
+      },
+      "threshold": 0.35,
+      "promotion_top_k": 5,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.7,
+      "recall@6": 0.55,
+      "contains": 0.3,
+      "latency": 0.01790062427520752,
+      "objective": 1.12
+    }
+  },
+  {
+    "config": {
+      "name": "rel_heavy_thr0.40_top5_hybrid",
+      "weights": {
+        "relevance": 0.5,
+        "reuse": 0.3,
+        "diversity": 0.2
+      },
+      "threshold": 0.4,
+      "promotion_top_k": 5,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.7,
+      "recall@6": 0.55,
+      "contains": 0.3,
+      "latency": 0.017629036903381346,
+      "objective": 1.12
+    }
+  },
+  {
+    "config": {
+      "name": "rel_strong_thr0.25_top3_hybrid",
+      "weights": {
+        "relevance": 0.6,
+        "reuse": 0.2,
+        "diversity": 0.2
+      },
+      "threshold": 0.25,
+      "promotion_top_k": 3,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.7,
+      "recall@6": 0.55,
+      "contains": 0.3,
+      "latency": 0.020981903076171874,
+      "objective": 1.12
+    }
+  },
+  {
+    "config": {
+      "name": "rel_strong_thr0.25_top5_hybrid",
+      "weights": {
+        "relevance": 0.6,
+        "reuse": 0.2,
+        "diversity": 0.2
+      },
+      "threshold": 0.25,
+      "promotion_top_k": 5,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.7,
+      "recall@6": 0.55,
+      "contains": 0.3,
+      "latency": 0.01866055965423584,
+      "objective": 1.12
+    }
+  },
+  {
+    "config": {
+      "name": "rel_strong_thr0.30_top3_hybrid",
+      "weights": {
+        "relevance": 0.6,
+        "reuse": 0.2,
+        "diversity": 0.2
+      },
+      "threshold": 0.3,
+      "promotion_top_k": 3,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.7,
+      "recall@6": 0.55,
+      "contains": 0.3,
+      "latency": 0.016576433181762697,
+      "objective": 1.12
+    }
+  },
+  {
+    "config": {
+      "name": "rel_strong_thr0.30_top5_hybrid",
+      "weights": {
+        "relevance": 0.6,
+        "reuse": 0.2,
+        "diversity": 0.2
+      },
+      "threshold": 0.3,
+      "promotion_top_k": 5,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.7,
+      "recall@6": 0.55,
+      "contains": 0.3,
+      "latency": 0.021011772155761718,
+      "objective": 1.12
+    }
+  },
+  {
+    "config": {
+      "name": "rel_strong_thr0.35_top3_hybrid",
+      "weights": {
+        "relevance": 0.6,
+        "reuse": 0.2,
+        "diversity": 0.2
+      },
+      "threshold": 0.35,
+      "promotion_top_k": 3,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.7,
+      "recall@6": 0.55,
+      "contains": 0.3,
+      "latency": 0.017373623847961425,
+      "objective": 1.12
+    }
+  },
+  {
+    "config": {
+      "name": "rel_strong_thr0.35_top5_hybrid",
+      "weights": {
+        "relevance": 0.6,
+        "reuse": 0.2,
+        "diversity": 0.2
+      },
+      "threshold": 0.35,
+      "promotion_top_k": 5,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.7,
+      "recall@6": 0.55,
+      "contains": 0.3,
+      "latency": 0.01926982879638672,
+      "objective": 1.12
+    }
+  },
+  {
+    "config": {
+      "name": "rel_strong_thr0.40_top3_hybrid",
+      "weights": {
+        "relevance": 0.6,
+        "reuse": 0.2,
+        "diversity": 0.2
+      },
+      "threshold": 0.4,
+      "promotion_top_k": 3,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.7,
+      "recall@6": 0.55,
+      "contains": 0.3,
+      "latency": 0.016746129989624024,
+      "objective": 1.12
+    }
+  },
+  {
+    "config": {
+      "name": "rel_strong_thr0.40_top5_hybrid",
+      "weights": {
+        "relevance": 0.6,
+        "reuse": 0.2,
+        "diversity": 0.2
+      },
+      "threshold": 0.4,
+      "promotion_top_k": 5,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.7,
+      "recall@6": 0.55,
+      "contains": 0.3,
+      "latency": 0.018483529090881346,
+      "objective": 1.12
+    }
+  },
+  {
+    "config": {
+      "name": "div_heavy_thr0.25_top5_hybrid",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.3,
+        "diversity": 0.3
+      },
+      "threshold": 0.25,
+      "promotion_top_k": 5,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.7,
+      "recall@6": 0.55,
+      "contains": 0.3,
+      "latency": 0.018432869911193847,
+      "objective": 1.12
+    }
+  },
+  {
+    "config": {
+      "name": "div_heavy_thr0.30_top5_hybrid",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.3,
+        "diversity": 0.3
+      },
+      "threshold": 0.3,
+      "promotion_top_k": 5,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.7,
+      "recall@6": 0.55,
+      "contains": 0.3,
+      "latency": 0.01964111328125,
+      "objective": 1.12
+    }
+  },
+  {
+    "config": {
+      "name": "div_heavy_thr0.35_top5_hybrid",
+      "weights": {
+        "relevance": 0.4,
+        "reuse": 0.3,
+        "diversity": 0.3
+      },
+      "threshold": 0.35,
+      "promotion_top_k": 5,
+      "route": "hybrid"
+    },
+    "summary": {
+      "hit@6": 0.7,
+      "recall@6": 0.55,
+      "contains": 0.3,
+      "latency": 0.018156886100769043,
+      "objective": 1.12
+    }
+  },
+  {
+    "config": {
+      "name": "rel_strong_thr0.25_top3_auto",
+      "weights": {
+        "relevance": 0.6,
+        "reuse": 0.2,
+        "diversity": 0.2
+      },
+      "threshold": 0.25,
+      "promotion_top_k": 3,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.68,
+      "recall@6": 0.54,
+      "contains": 0.32,
+      "latency": 0.01712131977081299,
+      "objective": 1.1
+    }
+  },
+  {
+    "config": {
+      "name": "rel_strong_thr0.30_top3_auto",
+      "weights": {
+        "relevance": 0.6,
+        "reuse": 0.2,
+        "diversity": 0.2
+      },
+      "threshold": 0.3,
+      "promotion_top_k": 3,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.68,
+      "recall@6": 0.54,
+      "contains": 0.32,
+      "latency": 0.0163456392288208,
+      "objective": 1.1
+    }
+  },
+  {
+    "config": {
+      "name": "rel_strong_thr0.35_top3_auto",
+      "weights": {
+        "relevance": 0.6,
+        "reuse": 0.2,
+        "diversity": 0.2
+      },
+      "threshold": 0.35,
+      "promotion_top_k": 3,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.68,
+      "recall@6": 0.54,
+      "contains": 0.32,
+      "latency": 0.018719115257263184,
+      "objective": 1.1
+    }
+  },
+  {
+    "config": {
+      "name": "rel_strong_thr0.40_top3_auto",
+      "weights": {
+        "relevance": 0.6,
+        "reuse": 0.2,
+        "diversity": 0.2
+      },
+      "threshold": 0.4,
+      "promotion_top_k": 3,
+      "route": "auto"
+    },
+    "summary": {
+      "hit@6": 0.68,
+      "recall@6": 0.54,
+      "contains": 0.32,
+      "latency": 0.016820650100708007,
+      "objective": 1.1
+    }
+  }
+]
