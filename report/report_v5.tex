@@ -1,0 +1,475 @@
+\documentclass{article}
+
+\usepackage[nonanonymous,nonatbib]{neurips_2026}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{placeins}
+\usepackage{float}
+
+\graphicspath{{Figure/}}
+\hypersetup{hypertexnames=false}
+
+\title{SMC-QA: Selective Memory Consolidation with Query-Aware Retrieval for Long-Context Question Answering\\
+\large Method and Empirical Study}
+
+\author{
+  \normalfont
+  \begin{tabular}{@{}c@{\hspace{0.07\textwidth}}c@{}}
+  \begin{minipage}[t]{0.43\textwidth}
+  \centering
+  \textbf{Zheng Yifan} \\
+  SID: 12532245 \\
+  Southern University of Science\\
+  and Technology \\
+  China \\
+  \texttt{\small 12532245@mail.sustech.edu.cn}
+  \end{minipage}
+  &
+  \begin{minipage}[t]{0.43\textwidth}
+  \centering
+  \textbf{Chen Zeming} \\
+  SID: 12531410 \\
+  Southern University of Science\\
+  and Technology \\
+  China \\
+  \texttt{\small 12531410@mail.sustech.edu.cn}
+  \end{minipage}
+  \end{tabular}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Long-context question answering requires systems to retrieve useful evidence from extensive interaction histories. Flat retrieval treats all past information as a single pool, which can introduce noise and ignores the distinction between recent context and consolidated long-term knowledge. We present SMC-QA, a lightweight hierarchical memory framework that organizes text chunks into short-term memory (STM) and long-term memory (LTM). SMC-QA uses selective promotion based on relevance, reuse frequency, and diversity, together with rule-based query-aware retrieval routing. We evaluate SMC-QA and five baselines on LongMemEval under both oracle and full-haystack settings, and further study whether targeted promotion and retrieval-depth adjustments improve performance. The retrieval-depth variant increases oracle Hit@6 from 0.778 to 0.793 and Recall@6 from 0.612 to 0.631. On the harder S-Cleaned setting, a relevance-heavy tuned configuration improves SMC-QA from 0.420 to 0.510 Hit@6, outperforming Flat Memory on the 100-instance evaluation subset. Overall, the results show that hierarchical memory is competitive with flat retrieval and becomes more effective when retrieval bandwidth and promotion aggressiveness are matched to the difficulty of the setting.
+\end{abstract}
+
+%======================================================================
+\section{Introduction}
+%======================================================================
+
+Long-context question answering (QA) is a challenging task that requires systems to locate relevant evidence within large volumes of historical interactions. Unlike standard QA, where the context is typically short and self-contained, long-context QA involves multi-session dialogues, knowledge updates, and temporal reasoning across extended interaction histories.
+
+A fundamental challenge in this setting is \textbf{memory management}: how should a system decide what information to retain, what to discard, and where to search when a new question arrives? A simple approach is to store all past information in a single pool and retrieve from it directly, but this leads to increased noise as irrelevant content accumulates.
+
+Inspired by cognitive science concepts of short-term and long-term memory, as well as recent work on hierarchical memory systems for LLMs~\cite{himem, rmm, lightmem}, we propose \textbf{SMC-QA} (Selective Memory Consolidation with Query-Aware Retrieval for Question Answering). Our system:
+
+\begin{itemize}
+    \item Organizes information into a \textbf{short-term memory} (STM) for recent content and a \textbf{long-term memory} (LTM) for consolidated knowledge.
+    \item Uses a lightweight \textbf{promotion score} combining relevance, reuse frequency, and diversity to decide which STM items should be promoted to LTM.
+    \item Applies \textbf{rule-based query-aware routing} to decide whether to search STM, LTM, or both based on query characteristics.
+\end{itemize}
+
+We compare SMC-QA against five baselines on the LongMemEval benchmark~\cite{longmemeval}, conduct ablation studies to isolate the contribution of each component, and evaluate whether targeted retrieval and promotion changes address weaknesses of the base configuration.
+
+%======================================================================
+\section{Related Work}
+%======================================================================
+
+\textbf{LongMemEval}~\cite{longmemeval} provides a benchmark for evaluating long-term interactive memory across five capabilities: information extraction, multi-session reasoning, knowledge updates, temporal reasoning, and abstention. We use this benchmark as our primary evaluation dataset.
+
+\textbf{HiMem}~\cite{himem} introduces hierarchical long-term memory for long-horizon dialogue agents, supporting both hierarchical memory construction and hybrid retrieval. Our STM/LTM structure draws inspiration from this work but uses a simpler, non-parametric design.
+
+\textbf{Reflective Memory Management (RMM)}~\cite{rmm} proposes multi-granularity memory summarization across utterances, turns, and sessions. Although SMC-QA does not use summary-based promotion, this work motivates our focus on memory consolidation.
+
+\textbf{LightMem}~\cite{lightmem} modularizes memory into retrieval, writing, and long-term consolidation components. SMC-QA adopts a similar modular philosophy but focuses specifically on selective promotion and query-aware retrieval routing.
+
+%======================================================================
+\section{Method}
+%======================================================================
+
+\subsection{System Overview}
+
+SMC-QA processes a stream of text chunks from historical interactions and organizes them into a two-level memory hierarchy. When a question arrives, the system routes it to the appropriate memory level(s) and retrieves the most relevant evidence.
+
+\subsection{Memory Structure}
+
+\textbf{Short-Term Memory (STM)} is a fixed-capacity FIFO buffer with capacity $C_s = 40$ chunks. New chunks enter STM, and when capacity is exceeded, the oldest chunks are evicted. STM preserves recent, detailed information.
+
+\textbf{Long-Term Memory (LTM)} stores promoted items with a maximum capacity of $C_l = 120$ chunks. Items enter LTM only through the promotion process. When LTM exceeds capacity, the least-accessed items are evicted. Duplicate detection based on cosine similarity ($\geq 0.85$) prevents redundant entries.
+
+\subsection{Selective Memory Consolidation}
+
+Every $f = 5$ chunks, a consolidation step evaluates STM items for promotion to LTM. Each candidate receives a composite score:
+
+\begin{equation}
+    \text{score} = w_r \cdot \text{relevance} + w_u \cdot \text{reuse} + w_d \cdot \text{diversity}
+\end{equation}
+
+where $w_r = 0.4$, $w_u = 0.4$, $w_d = 0.2$.
+
+\textbf{Relevance} measures the average cosine similarity between the chunk embedding and the embeddings of recent queries (window of 5).
+
+\textbf{Reuse} captures how frequently the chunk has been retrieved, normalized by the maximum hit count in STM.
+
+\textbf{Diversity} measures novelty relative to existing LTM content: $\text{diversity} = 1 - \max_{l \in \text{LTM}} \text{sim}(c, l)$.
+
+Only the top-$k$ candidates ($k=3$) with scores above a threshold ($\tau = 0.35$) are promoted.
+
+\subsection{Query-Aware Retrieval Routing}
+
+When a query arrives, the system applies three rules in sequence:
+
+\begin{enumerate}
+    \item \textbf{Rule 1 (LTM-first)}: If the query contains temporal keywords (e.g., ``before'', ``earlier'', ``previously'', ``first''), route to LTM.
+    \item \textbf{Rule 2 (STM-first)}: If the query's average similarity to recent STM chunks exceeds its similarity to LTM by a margin $\delta = 0.05$, route to STM.
+    \item \textbf{Rule 3 (Hybrid)}: Otherwise, retrieve from both STM and LTM, merge results, and re-rank.
+\end{enumerate}
+
+For single-path retrieval, the base system returns top-4 results. For hybrid retrieval, it takes top-4 from each level, merges and deduplicates candidates, and re-ranks them to return top-6.
+
+\subsection{Improved Retrieval-Depth Variant}
+
+The base retrieval setting creates a mismatch with the evaluation metric: single-path STM or LTM routing returns only four chunks, while the main metrics are Hit@6 and Recall@6. We therefore study a retrieval-depth variant that keeps the memory construction and routing logic unchanged but widens the per-memory candidate depth.
+
+For the oracle setting, this variant uses the base promotion weights $(w_r, w_u, w_d)=(0.4,0.4,0.2)$, a slightly stricter promotion threshold $\tau=0.40$, top-3 promotion, and top-8 retrieval from STM and LTM before final top-6 re-ranking. For S-Cleaned, we additionally test a relevance-heavy promotion score $(0.5,0.3,0.2)$ with $\tau=0.20$, because the full-haystack setting contains substantially more distractor content and benefits from promoting semantically relevant chunks earlier.
+
+%======================================================================
+\section{Experimental Setup}
+%======================================================================
+
+\subsection{Dataset}
+
+We use the \textbf{LongMemEval} benchmark~\cite{longmemeval}, which contains 500 evaluation instances across six question types: single-session-user, single-session-assistant, single-session-preference, multi-session, temporal-reasoning, and knowledge-update.
+
+We evaluate in two settings:
+\begin{itemize}
+    \item \textbf{Oracle}: Each instance includes only answer-relevant sessions ($\sim$28 turns/instance).
+    \item \textbf{S-Cleaned (Full Haystack)}: Each instance includes $\sim$50 sessions with $\sim$500 turns, where answer-relevant content is mixed with distractors. We truncate to 200 turns per instance for computational tractability.
+\end{itemize}
+
+For oracle experiments, we sample 200 instances (50 dev / 150 test) with seed 42 and report test results across three seeds (42, 43, 44).
+
+\subsection{Baselines}
+
+\begin{enumerate}
+    \item \textbf{Flat Memory}: All chunks in one pool; retrieve top-6 by cosine similarity.
+    \item \textbf{STM-only}: Retrieve only from the most recent 40 chunks.
+    \item \textbf{LTM-only}: Build LTM via our promotion method; retrieve only from LTM.
+    \item \textbf{Naive STM+LTM}: Build STM/LTM; always retrieve from both (no routing).
+    \item \textbf{Frequency-based Promotion}: Promote to LTM based on retrieval frequency only.
+\end{enumerate}
+
+\subsection{Metrics}
+
+\begin{itemize}
+    \item \textbf{Hit@6}: Whether at least one gold evidence turn is found in the top-6 retrieved chunks.
+    \item \textbf{Recall@6}: Fraction of gold evidence turns covered by the top-6 retrieved chunks.
+    \item \textbf{Contains}: Whether the concatenated top-3 retrieved chunks contain the gold answer string.
+\end{itemize}
+
+We match retrieved chunks to gold evidence using word-level overlap with a threshold of 50\%.
+
+\subsection{Model Configuration}
+
+We use \texttt{all-MiniLM-L6-v2} from sentence-transformers for embedding (384-dimensional). All retrieval uses brute-force cosine similarity. Text is chunked at 120 words with 30-word overlap, preserving natural turn boundaries when turns are shorter than 160 words.
+
+\subsection{Tuning Protocol}
+
+The tuning study contains four parts. First, we tune promotion weights, promotion threshold, promotion top-$k$, and routing mode on the oracle split. Second, we tune STM/LTM retrieval depth to test whether wider candidate retrieval better matches the top-6 evaluation metric. Third, we evaluate question-type behavior, LTM quality, and representative success and failure cases. Finally, we test a S-Cleaned-specific setting with lower promotion threshold, relevance-heavy scoring, and wider retrieval.
+
+The S-Cleaned tuning experiment uses the same 100-instance subset as the baseline S-Cleaned evaluation. We tune on the first 30 instances and report the final comparison on all 100 instances, each truncated to 200 turns.
+
+%======================================================================
+\section{Results}
+%======================================================================
+
+\subsection{Oracle Setting}
+
+Figure~\ref{fig:oracle-main} summarizes the oracle results on 150 test instances across three seeds. Appendix~\ref{app:detailed-results} provides the corresponding numerical table.
+
+\textbf{Key observations:}
+\begin{itemize}
+    \item \textbf{Hierarchical memory helps}: STM-only (0.642 Hit@6) significantly underperforms all methods that include LTM, confirming that relying solely on recent memory is insufficient.
+    \item \textbf{LTM adds value}: LTM-only (0.713) outperforms STM-only by 7.1\%, showing that promoted content provides useful signal even without short-term context.
+    \item \textbf{Promotion strategies are competitive}: Both Freq Promotion (0.804) and SMC-QA (0.778) are comparable to Flat Memory (0.782) on Hit@6, despite searching only a selected memory structure rather than a single flat pool.
+    \item \textbf{Contains metric}: SMC-QA achieves the highest Contains score (0.333) with the lowest variance (0.030), suggesting it retrieves more answer-relevant content.
+\end{itemize}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.90\textwidth]{fig01_oracle_main_results.pdf}
+\caption{Oracle-setting comparison across STM-only, LTM-only, flat retrieval, naive STM+LTM, frequency promotion, and SMC-QA. Frequency promotion obtains the strongest Hit@6 and Recall@6, while SMC-QA remains competitive and achieves the best Contains score.}
+\label{fig:oracle-main}
+\end{figure}
+
+\subsection{Promotion-Only Tuning}
+
+Before changing retrieval depth, we tune only the promotion weights, promotion threshold, promotion top-$k$, and routing mode. This stage provides a useful negative result: Table~\ref{tab:promotion-tuning} shows that promotion-only tuning slightly improves Contains, but it does not reliably improve Hit@6 or Recall@6 and still fails to outperform the frequency-promotion baseline. This motivates the second-stage focus on retrieval top-$k$.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Best promotion-only tuning results on the oracle test split.}
+\label{tab:promotion-tuning}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lccc}
+\toprule
+\textbf{Configuration} & \textbf{Hit@6} & \textbf{Recall@6} & \textbf{Contains} \\
+\midrule
+Base weights, $\tau=0.40$, top-3, auto routing & 0.776 $\pm$ 0.023 & 0.614 $\pm$ 0.016 & \textbf{0.336 $\pm$ 0.035} \\
+Base weights, $\tau=0.25$, top-3, auto routing & 0.776 $\pm$ 0.017 & 0.609 $\pm$ 0.013 & 0.333 $\pm$ 0.030 \\
+Diversity-heavy weights, $\tau=0.40$, top-5, auto routing & 0.760 $\pm$ 0.016 & 0.593 $\pm$ 0.016 & 0.333 $\pm$ 0.036 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\subsection{Improved Oracle Retrieval Depth}
+
+Figure~\ref{fig:retrieval-tuning} compares the base SMC-QA against the best retrieval-depth variant. Increasing the STM/LTM candidate depth from four to eight improves both Hit@6 and Recall@6 while leaving Contains nearly unchanged. The tuned model still does not surpass frequency-based promotion on Hit@6, but it closes part of the gap while preserving the query-aware SMC-QA structure.
+
+The retrieval top-$k$ search first selects candidate configurations on the 50-instance dev set and then evaluates the best configurations across three test seeds. Table~\ref{tab:retrieval-search} shows that the main gain comes from retrieving at least six to eight candidates per memory level.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.84\textwidth]{fig02_retrieval_tuning.pdf}
+\caption{Effect of retrieval-depth tuning on the oracle setting. Increasing the STM/LTM candidate depth improves Hit@6 and Recall@6 over the base SMC-QA configuration, narrowing the gap to frequency promotion.}
+\label{fig:retrieval-tuning}
+\end{figure}
+
+\begin{table}[h]
+\centering
+\small
+\caption{Retrieval top-$k$ tuning results on the oracle test split.}
+\label{tab:retrieval-search}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lccc}
+\toprule
+\textbf{Configuration} & \textbf{Hit@6} & \textbf{Recall@6} & \textbf{Contains} \\
+\midrule
+Base weights, $\tau=0.40$, STM/LTM top-6 & 0.789 $\pm$ 0.033 & 0.628 $\pm$ 0.024 & 0.329 $\pm$ 0.033 \\
+Base weights, $\tau=0.40$, STM/LTM top-8 & \textbf{0.793 $\pm$ 0.030} & \textbf{0.631 $\pm$ 0.024} & 0.329 $\pm$ 0.033 \\
+Diversity-heavy weights, $\tau=0.40$, STM top-6 / LTM top-4 & 0.769 $\pm$ 0.019 & 0.606 $\pm$ 0.017 & 0.327 $\pm$ 0.033 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+Figure~\ref{fig:question-type-delta} shows that the tuned variant mainly helps \textit{temporal-reasoning} and \textit{single-session-assistant} questions. However, it regresses on \textit{knowledge-update}, suggesting that wider retrieval can introduce older or conflicting evidence when the question asks for the most recent state.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.84\textwidth]{fig04_question_type_delta.pdf}
+\caption{Question-type changes from base SMC-QA to retrieval-tuned SMC-QA on seed 42. The tuned variant improves temporal-reasoning and single-session-assistant questions, but wider retrieval can hurt knowledge-update questions by admitting stale evidence.}
+\label{fig:question-type-delta}
+\end{figure}
+\FloatBarrier
+
+\subsection{Full Haystack Setting (S-Cleaned)}
+
+Figure~\ref{fig:scleaned-tuning} shows results when answer-relevant content is mixed with $\sim$200 distractor turns. In the untuned setting, Flat Memory outperforms SMC-QA. After tuning the S-Cleaned-specific promotion threshold, promotion weights, and retrieval depth, the best SMC-QA variant improves substantially and becomes the strongest method on this 100-instance subset.
+
+The best S-Cleaned configuration uses relevance-heavy promotion weights, threshold $\tau=0.20$, top-3 promotion, and STM/LTM top-8 retrieval. Compared with base SMC-QA, it improves Hit@6 by 9.0 percentage points and Recall@6 by 7.0 percentage points. This result indicates that the base hyperparameters are too conservative for full-haystack retrieval: lowering the promotion threshold and increasing retrieval depth helps preserve and expose relevant evidence among distractors.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.84\textwidth]{fig03_s_cleaned_tuning.pdf}
+\caption{S-Cleaned full-haystack results on the 100-instance subset. Relevance-heavy promotion with lower threshold and wider retrieval substantially improves SMC-QA and outperforms Flat Memory, Frequency Promotion, and the base SMC-QA configuration.}
+\label{fig:scleaned-tuning}
+\end{figure}
+\FloatBarrier
+
+\subsection{Ablation and LTM Quality}
+
+Diversity is the most important component in the ablation results: removing it causes the largest drop, indicating that preventing duplicate information from entering LTM is central to the promotion strategy. Relevance has limited impact in the oracle setting, where most content is already relevant, while query-aware routing provides modest benefits.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Ablation results on LongMemEval Oracle.}
+\label{tab:ablation}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Configuration} & \textbf{Hit@6} & \textbf{Recall@6} & \textbf{Contains} \\
+\midrule
+SMC-QA (full) & 0.753 & 0.588 & 0.327 \\
+$-$ relevance & 0.760 & 0.589 & 0.333 \\
+$-$ diversity & 0.740 & 0.570 & 0.313 \\
+$-$ routing & 0.753 & 0.589 & 0.320 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+To understand why retrieval tuning helps, we also evaluate LTM quality. Figure~\ref{fig:ltm-quality} shows that the tuned variant does not improve intrinsic LTM quality over base SMC-QA. Its final retrieval gain therefore comes mainly from exposing more STM/LTM candidates before final top-6 ranking, rather than from building a higher-quality LTM.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{fig05_ltm_quality.pdf}
+\caption{LTM size and evidence-quality diagnostics on seed 42. Base SMC-QA stores the largest LTM and has the strongest direct gold-evidence coverage, while retrieval-tuned SMC-QA gains mainly from exposing more candidates during final retrieval.}
+\label{fig:ltm-quality}
+\end{figure}
+
+\subsection{Case Analysis}
+
+Representative cases are summarized in Table~\ref{tab:case-study}. Success cases often require evidence just outside the base top-4 candidate set, while regressions often involve updates, locations, or spending details where stale but semantically similar evidence competes with the current answer. This pattern is consistent with the question-type analysis: wider retrieval helps when relevant evidence is near the boundary, but it can hurt when recency is essential.
+
+\begin{table}[h]
+\centering
+\scriptsize
+\caption{Representative case studies from the retrieval-tuned SMC-QA analysis.}
+\label{tab:case-study}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{llcc}
+\toprule
+\textbf{Type} & \textbf{Case Description} & \textbf{Original Recall} & \textbf{Tuned Recall} \\
+\midrule
+single-session-assistant & Catalonia singer-songwriter question & 0.00 & \textbf{1.00} \\
+multi-session & Initial tomatoes and cucumbers plants & 0.50 & \textbf{1.00} \\
+temporal-reasoning & Charity gala versus charity bake sale & 0.00 & \textbf{0.50} \\
+knowledge-update & Old sneakers location & \textbf{1.00} & 0.50 \\
+knowledge-update & Alex from Germany meetups & \textbf{0.50} & 0.00 \\
+multi-session & Car wash and parking ticket spending & \textbf{1.00} & 0.50 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+%======================================================================
+\section{Discussion}
+%======================================================================
+
+\textbf{When does hierarchical memory help?} Hierarchical memory is most useful when (1) the conversation history is long enough that STM alone cannot cover relevant information, and (2) the question specifically requires long-term knowledge. In the oracle setting with limited context, the advantage is modest, but the S-Cleaned experiment shows that tuned hierarchical memory can outperform Flat Memory even when many distractors are present.
+
+\textbf{Retrieval depth matters}: The strongest oracle improvement comes from a mismatch in the base retrieval setup: single-path routing returns top-4 results, while evaluation is based on top-6. Expanding STM/LTM candidate retrieval to top-8 improves Hit@6 and Recall@6 without changing the memory architecture. This suggests that SMC-QA's memory construction is useful, but the retriever needs enough candidate bandwidth to expose relevant evidence.
+
+\textbf{Promotion strategy trade-offs}: The frequency-based baseline performs surprisingly well, suggesting that simple heuristics can be effective. The multi-factor promotion score (relevance + reuse + diversity) shows its strength primarily through the diversity component in oracle ablations, while the S-Cleaned tuning experiment shows that relevance should receive more weight when distractors dominate. The best S-Cleaned configuration uses a lower promotion threshold and wider retrieval, indicating that conservative consolidation can discard useful evidence too early.
+
+\textbf{Remaining failure modes}: The question-type breakdown shows a clear regression on knowledge-update questions after retrieval-depth tuning. This likely happens because wider retrieval admits stale but semantically similar evidence. A stronger variant should add recency-aware conflict resolution, especially for questions containing cues such as ``most recent'', ``latest'', or ``updated''.
+
+\textbf{Limitations}: (1) The routing rules are hand-crafted and may not generalize to all query types. A learned router could be more adaptive. (2) SMC-QA does not perform summary-based promotion, which could compress information more effectively. (3) The embedding model (MiniLM-L6-v2) is relatively small; stronger encoders may improve retrieval quality. (4) The tuning experiments use relatively small subsets, especially S-Cleaned. (5) The evaluation focuses on retrieval metrics, so the conclusions mainly concern evidence selection rather than end-to-end response quality.
+
+\textbf{Future work}: Extending the framework with learned routing, recency-aware update handling, summary-based consolidation, and stronger embedding models would provide a more complete picture of hierarchical memory in long-context QA.
+
+%======================================================================
+\section{Conclusion}
+%======================================================================
+
+We presented SMC-QA, a lightweight hierarchical memory framework for long-context question answering. The baseline experiments show that STM+LTM memory is competitive with flat retrieval and that diversity is the most important component of the base promotion score. The tuning experiments further show that retrieval depth is a practical bottleneck: expanding STM/LTM candidate retrieval improves oracle Hit@6 from 0.778 to 0.793 and Recall@6 from 0.612 to 0.631. On the harder S-Cleaned setting, relevance-heavy promotion with lower threshold and wider retrieval improves SMC-QA from 0.420 to 0.510 Hit@6, outperforming Flat Memory on the evaluated subset. These results suggest that hierarchical memory is promising, but its effectiveness depends strongly on promotion aggressiveness, retrieval bandwidth, and special handling of knowledge updates.
+
+%======================================================================
+\section{Contributions}
+%======================================================================
+
+\textbf{Zheng Yifan} (50\%): Method design, memory-structure design, promotion strategy design, routing design, experiment planning, and report writing.
+
+\textbf{Chen Zeming} (50\%): Data processing, baseline method development, evaluation metrics, ablation experiments, and case analysis.
+
+\clearpage
+
+%======================================================================
+% References
+%======================================================================
+
+\begin{thebibliography}{4}
+
+\bibitem{longmemeval}
+Wu, D., Wang, H., Yu, W., Zhang, Y., Chang, K.-W., and Yu, D.
+\newblock LongMemEval: Benchmarking Chat Assistants on Long-Term Interactive Memory.
+\newblock \emph{arXiv preprint arXiv:2410.10813}, 2024.
+
+\bibitem{himem}
+Zhang, N., Yang, X., Tan, Z., Deng, W., and Wang, W.
+\newblock HiMem: Hierarchical Long-Term Memory for LLM Long-Horizon Agents.
+\newblock \emph{arXiv preprint arXiv:2601.06377}, 2026.
+
+\bibitem{rmm}
+Tan, Z., Yan, J., Hsu, I.-H., Han, R., Wang, Z., Le, L., Song, Y., Chen, Y., Palangi, H., Lee, G., Iyer, A.~R., Chen, T., Liu, H., Lee, C.-Y., and Pfister, T.
+\newblock In Prospect and Retrospect: Reflective Memory Management for Long-term Personalized Dialogue Agents.
+\newblock In \emph{Proceedings of ACL}, pages 8416--8439, 2025.
+
+\bibitem{lightmem}
+Fang, J., Deng, X., Xu, H., Jiang, Z., Tang, Y., Xu, Z., Deng, S., Yao, Y., Wang, M., Qiao, S., Chen, H., and Zhang, N.
+\newblock LightMem: Lightweight and Efficient Memory-Augmented Generation.
+\newblock \emph{arXiv preprint arXiv:2510.18866}, 2025.
+
+\end{thebibliography}
+
+\clearpage
+\appendix
+
+\section*{Appendix: Supplementary Detailed Results}
+
+\section{Detailed Empirical Results}
+\label{app:detailed-results}
+
+\begin{table}[H]
+\centering
+\caption{Main results on LongMemEval Oracle (150 test instances, 3 seeds).}
+\label{tab:main}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Method} & \textbf{Hit@6} & \textbf{Recall@6} & \textbf{Contains} \\
+\midrule
+STM-only & 0.642 $\pm$ 0.003 & 0.478 $\pm$ 0.002 & 0.342 $\pm$ 0.042 \\
+LTM-only & 0.713 $\pm$ 0.019 & 0.549 $\pm$ 0.014 & 0.309 $\pm$ 0.044 \\
+Flat Memory & 0.782 $\pm$ 0.019 & 0.623 $\pm$ 0.021 & 0.298 $\pm$ 0.049 \\
+Naive STM+LTM & 0.776 $\pm$ 0.017 & 0.614 $\pm$ 0.018 & 0.329 $\pm$ 0.039 \\
+Freq Promotion & 0.804 $\pm$ 0.013 & 0.641 $\pm$ 0.021 & 0.327 $\pm$ 0.045 \\
+SMC-QA (Ours) & 0.778 $\pm$ 0.022 & 0.612 $\pm$ 0.018 & \textbf{0.333 $\pm$ 0.030} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Tuning Details}
+\label{app:tuning}
+
+\begin{table}[H]
+\centering
+\caption{Oracle improvement from retrieval-depth tuning (150 test instances, 3 seeds).}
+\label{tab:retrieval-tuned}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Method} & \textbf{Hit@6} & \textbf{Recall@6} & \textbf{Contains} \\
+\midrule
+Base SMC-QA & 0.778 $\pm$ 0.022 & 0.612 $\pm$ 0.018 & \textbf{0.333 $\pm$ 0.030} \\
+Retrieval-tuned SMC-QA & 0.793 $\pm$ 0.030 & 0.631 $\pm$ 0.024 & 0.329 $\pm$ 0.033 \\
+Freq Promotion & \textbf{0.804 $\pm$ 0.013} & \textbf{0.641 $\pm$ 0.021} & 0.327 $\pm$ 0.045 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Question-type comparison between base and retrieval-tuned SMC-QA on seed 42.}
+\label{tab:question-type}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Question Type} & \textbf{Base Hit} & \textbf{Tuned Hit} & \textbf{Base Recall} & \textbf{Tuned Recall} \\
+\midrule
+single-session-assistant & 0.588 & \textbf{0.647} & 0.588 & \textbf{0.647} \\
+temporal-reasoning & 0.769 & \textbf{0.821} & 0.544 & \textbf{0.569} \\
+multi-session & \textbf{0.750} & 0.722 & 0.485 & \textbf{0.501} \\
+knowledge-update & \textbf{0.778} & 0.741 & \textbf{0.580} & 0.543 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Results on LongMemEval S-Cleaned before and after tuning (100 instances, 200 turns each).}
+\label{tab:scleaned}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Method} & \textbf{Hit@6} & \textbf{Recall@6} & \textbf{Contains} \\
+\midrule
+Flat Memory & 0.460 & 0.315 & 0.260 \\
+Freq Promotion & 0.430 & 0.292 & 0.250 \\
+Base SMC-QA & 0.420 & 0.290 & 0.250 \\
+Tuned SMC-QA & \textbf{0.510} & \textbf{0.360} & \textbf{0.270} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}

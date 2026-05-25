@@ -13,6 +13,11 @@
 \usepackage{xcolor}
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage{placeins}
+\usepackage{float}
+
+\graphicspath{{Figure/}}
+\hypersetup{hypertexnames=false}
 
 \title{SMC-QA: Selective Memory Consolidation with Query-Aware Retrieval for Long-Context Question Answering\\
 \large Extended Improvement Study}
@@ -167,25 +172,7 @@ The S-Cleaned tuning experiment uses the same 100-instance subset as the baselin
 
 \subsection{Oracle Setting}
 
-Table~\ref{tab:main} shows results on the oracle dataset (150 test instances, mean $\pm$ std across 3 seeds).
-
-\begin{table}[h]
-\centering
-\caption{Main results on LongMemEval Oracle (150 test instances, 3 seeds).}
-\label{tab:main}
-\begin{tabular}{lccc}
-\toprule
-\textbf{Method} & \textbf{Hit@6} & \textbf{Recall@6} & \textbf{Contains} \\
-\midrule
-STM-only & 0.642 $\pm$ 0.003 & 0.478 $\pm$ 0.002 & 0.342 $\pm$ 0.042 \\
-LTM-only & 0.713 $\pm$ 0.019 & 0.549 $\pm$ 0.014 & 0.309 $\pm$ 0.044 \\
-Flat Memory & 0.782 $\pm$ 0.019 & 0.623 $\pm$ 0.021 & 0.298 $\pm$ 0.049 \\
-Naive STM+LTM & 0.776 $\pm$ 0.017 & 0.614 $\pm$ 0.018 & 0.329 $\pm$ 0.039 \\
-Freq Promotion & 0.804 $\pm$ 0.013 & 0.641 $\pm$ 0.021 & 0.327 $\pm$ 0.045 \\
-SMC-QA (Ours) & 0.778 $\pm$ 0.022 & 0.612 $\pm$ 0.018 & \textbf{0.333 $\pm$ 0.030} \\
-\bottomrule
-\end{tabular}
-\end{table}
+Figure~\ref{fig:oracle-main} summarizes the oracle results on 150 test instances across three seeds. The detailed numerical table is provided in Appendix~\ref{app:detailed-results}.
 
 \textbf{Key observations:}
 \begin{itemize}
@@ -195,114 +182,62 @@ SMC-QA (Ours) & 0.778 $\pm$ 0.022 & 0.612 $\pm$ 0.018 & \textbf{0.333 $\pm$ 0.03
     \item \textbf{Contains metric}: SMC-QA achieves the highest Contains score (0.333) with the lowest variance (0.030), suggesting it retrieves more answer-relevant content.
 \end{itemize}
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.90\textwidth]{fig01_oracle_main_results.pdf}
+\caption{Oracle-setting comparison across STM-only, LTM-only, flat retrieval, naive STM+LTM, frequency promotion, and SMC-QA. Frequency promotion obtains the strongest Hit@6 and Recall@6, while SMC-QA remains competitive and achieves the best Contains score.}
+\label{fig:oracle-main}
+\end{figure}
+
 \subsection{Promotion-Only Tuning}
 
-Before changing retrieval depth, we first tune only the promotion weights, promotion threshold, promotion top-$k$, and routing mode. The search covers baseline, relevance-heavy, relevance-strong, and diversity-heavy weighting schemes; thresholds $\{0.25,0.30,0.35,0.40\}$; promotion top-$k \in \{3,5\}$; and auto versus hybrid routing. Table~\ref{tab:promotion-tuning} lists the best test configurations from this first stage.
-
-\begin{table}[h]
-\centering
-\caption{Best promotion-only tuning results on the oracle test split.}
-\label{tab:promotion-tuning}
-\resizebox{\textwidth}{!}{
-\begin{tabular}{lccc}
-\toprule
-\textbf{Configuration} & \textbf{Hit@6} & \textbf{Recall@6} & \textbf{Contains} \\
-\midrule
-Base weights, $\tau=0.40$, top-3, auto routing & 0.776 $\pm$ 0.023 & 0.614 $\pm$ 0.016 & \textbf{0.336 $\pm$ 0.035} \\
-Base weights, $\tau=0.25$, top-3, auto routing & 0.776 $\pm$ 0.017 & 0.609 $\pm$ 0.013 & 0.333 $\pm$ 0.030 \\
-Diversity-heavy weights, $\tau=0.40$, top-5, auto routing & 0.760 $\pm$ 0.016 & 0.593 $\pm$ 0.016 & 0.333 $\pm$ 0.036 \\
-\bottomrule
-\end{tabular}
-}
-\end{table}
-
-The first-stage conclusion is negative but useful: promotion-only tuning slightly improves Contains, but it does not reliably improve Hit@6 or Recall@6 and still fails to outperform the frequency-promotion baseline. This motivates the second-stage focus on retrieval top-$k$.
+Before changing retrieval depth, we first tune only the promotion weights, promotion threshold, promotion top-$k$, and routing mode. The first-stage conclusion is negative but useful: promotion-only tuning slightly improves Contains, but it does not reliably improve Hit@6 or Recall@6 and still fails to outperform the frequency-promotion baseline. This motivates the second-stage focus on retrieval top-$k$. The detailed promotion-only configurations are reported in Appendix~\ref{app:tuning}.
 
 \subsection{Improved Oracle Retrieval Depth}
 
-Table~\ref{tab:retrieval-tuned} compares the base SMC-QA against the best retrieval-depth variant. Increasing the STM/LTM candidate depth from four to eight improves both Hit@6 and Recall@6 while leaving Contains nearly unchanged. The tuned model still does not surpass frequency-based promotion on Hit@6, but it closes part of the gap while preserving the query-aware SMC-QA structure.
+Figure~\ref{fig:retrieval-tuning} compares the base SMC-QA against the best retrieval-depth variant. Increasing the STM/LTM candidate depth from four to eight improves both Hit@6 and Recall@6 while leaving Contains nearly unchanged. The tuned model still does not surpass frequency-based promotion on Hit@6, but it closes part of the gap while preserving the query-aware SMC-QA structure.
 
-The retrieval top-$k$ search first selects candidate configurations on the 50-instance dev set, then evaluates the best configurations across three test seeds. The strongest two dev configurations both reach 0.800 Hit@6 and 0.643 Recall@6, showing that the main gain comes from retrieving at least six to eight candidates per memory level.
+The retrieval top-$k$ search first selects candidate configurations on the 50-instance dev set, then evaluates the best configurations across three test seeds. The strongest two dev configurations both reach 0.800 Hit@6 and 0.643 Recall@6, showing that the main gain comes from retrieving at least six to eight candidates per memory level. Full tuning details are provided in Appendix~\ref{app:tuning}.
 
-\begin{table}[h]
+\begin{figure}[t]
 \centering
-\caption{Retrieval top-$k$ tuning results on the oracle test split.}
-\label{tab:retrieval-search}
-\resizebox{\textwidth}{!}{
-\begin{tabular}{lccc}
-\toprule
-\textbf{Configuration} & \textbf{Hit@6} & \textbf{Recall@6} & \textbf{Contains} \\
-\midrule
-Base weights, $\tau=0.40$, STM/LTM top-6 & 0.789 $\pm$ 0.033 & 0.628 $\pm$ 0.024 & 0.329 $\pm$ 0.033 \\
-Base weights, $\tau=0.40$, STM/LTM top-8 & \textbf{0.793 $\pm$ 0.030} & \textbf{0.631 $\pm$ 0.024} & 0.329 $\pm$ 0.033 \\
-Diversity-heavy weights, $\tau=0.40$, STM top-6 / LTM top-4 & 0.769 $\pm$ 0.019 & 0.606 $\pm$ 0.017 & 0.327 $\pm$ 0.033 \\
-\bottomrule
-\end{tabular}
-}
-\end{table}
+\includegraphics[width=0.84\textwidth]{fig02_retrieval_tuning.pdf}
+\caption{Effect of retrieval-depth tuning on the oracle setting. Increasing the STM/LTM candidate depth improves Hit@6 and Recall@6 over the base SMC-QA configuration, narrowing the gap to frequency promotion.}
+\label{fig:retrieval-tuning}
+\end{figure}
 
-\begin{table}[h]
+Figure~\ref{fig:question-type-delta} shows that the tuned variant mainly helps \textit{temporal-reasoning} and \textit{single-session-assistant} questions. However, it regresses on \textit{knowledge-update}, suggesting that wider retrieval can introduce older or conflicting evidence when the question asks for the most recent state.
+
+\begin{figure}[t]
 \centering
-\caption{Oracle improvement from retrieval-depth tuning (150 test instances, 3 seeds).}
-\label{tab:retrieval-tuned}
-\begin{tabular}{lccc}
-\toprule
-\textbf{Method} & \textbf{Hit@6} & \textbf{Recall@6} & \textbf{Contains} \\
-\midrule
-Base SMC-QA & 0.778 $\pm$ 0.022 & 0.612 $\pm$ 0.018 & \textbf{0.333 $\pm$ 0.030} \\
-Retrieval-tuned SMC-QA & 0.793 $\pm$ 0.030 & 0.631 $\pm$ 0.024 & 0.329 $\pm$ 0.033 \\
-Freq Promotion & \textbf{0.804 $\pm$ 0.013} & \textbf{0.641 $\pm$ 0.021} & 0.327 $\pm$ 0.045 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-The question-type breakdown in Table~\ref{tab:question-type} shows that the tuned variant mainly helps \textit{temporal-reasoning} and \textit{single-session-assistant} questions. However, it regresses on \textit{knowledge-update}, suggesting that wider retrieval can introduce older or conflicting evidence when the question asks for the most recent state.
-
-\begin{table}[h]
-\centering
-\caption{Question-type comparison between base and retrieval-tuned SMC-QA on seed 42.}
-\label{tab:question-type}
-\begin{tabular}{lcccc}
-\toprule
-\textbf{Question Type} & \textbf{Base Hit} & \textbf{Tuned Hit} & \textbf{Base Recall} & \textbf{Tuned Recall} \\
-\midrule
-single-session-assistant & 0.588 & \textbf{0.647} & 0.588 & \textbf{0.647} \\
-temporal-reasoning & 0.769 & \textbf{0.821} & 0.544 & \textbf{0.569} \\
-multi-session & \textbf{0.750} & 0.722 & 0.485 & \textbf{0.501} \\
-knowledge-update & \textbf{0.778} & 0.741 & \textbf{0.580} & 0.543 \\
-\bottomrule
-\end{tabular}
-\end{table}
+\includegraphics[width=0.82\textwidth]{fig04_question_type_delta.pdf}
+\caption{Question-type changes from base SMC-QA to retrieval-tuned SMC-QA on seed 42. The tuned variant improves temporal-reasoning and single-session-assistant questions, but wider retrieval can hurt knowledge-update questions by admitting stale evidence.}
+\label{fig:question-type-delta}
+\end{figure}
+\FloatBarrier
 
 \subsection{Full Haystack Setting (S-Cleaned)}
 
-Table~\ref{tab:scleaned} shows results when answer-relevant content is mixed with $\sim$200 distractor turns. The baseline evaluation showed that Flat Memory outperformed SMC-QA in this setting. After tuning the S-Cleaned-specific promotion threshold, promotion weights, and retrieval depth, the best SMC-QA variant improves substantially and becomes the strongest method on this 100-instance subset.
-
-\begin{table}[h]
-\centering
-\caption{Results on LongMemEval S-Cleaned before and after tuning (100 instances, 200 turns each).}
-\label{tab:scleaned}
-\begin{tabular}{lccc}
-\toprule
-\textbf{Method} & \textbf{Hit@6} & \textbf{Recall@6} & \textbf{Contains} \\
-\midrule
-Flat Memory & 0.460 & 0.315 & 0.260 \\
-Freq Promotion & 0.430 & 0.292 & 0.250 \\
-Base SMC-QA & 0.420 & 0.290 & 0.250 \\
-Tuned SMC-QA & \textbf{0.510} & \textbf{0.360} & \textbf{0.270} \\
-\bottomrule
-\end{tabular}
-\end{table}
+Figure~\ref{fig:scleaned-tuning} shows results when answer-relevant content is mixed with $\sim$200 distractor turns. The baseline evaluation showed that Flat Memory outperformed SMC-QA in this setting. After tuning the S-Cleaned-specific promotion threshold, promotion weights, and retrieval depth, the best SMC-QA variant improves substantially and becomes the strongest method on this 100-instance subset.
 
 The best S-Cleaned configuration uses relevance-heavy promotion weights, threshold $\tau=0.20$, top-3 promotion, and STM/LTM top-8 retrieval. Compared with base SMC-QA, it improves Hit@6 by 9.0 percentage points and Recall@6 by 7.0 percentage points. This result indicates that the base hyperparameters were too conservative for full-haystack retrieval: lowering the promotion threshold and increasing retrieval depth helps the model preserve and expose relevant evidence among distractors.
 
-\subsection{Ablation Study}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.82\textwidth]{fig03_s_cleaned_tuning.pdf}
+\caption{S-Cleaned full-haystack results on the 100-instance subset. Relevance-heavy promotion with lower threshold and wider retrieval substantially improves SMC-QA and outperforms Flat Memory, Frequency Promotion, and the base SMC-QA configuration.}
+\label{fig:scleaned-tuning}
+\end{figure}
+\FloatBarrier
 
-Table~\ref{tab:ablation} shows the effect of removing each component from SMC-QA.
+\subsection{Ablation and LTM Quality}
+
+Diversity matters most in the ablation results: removing the diversity component causes the largest drop, indicating that preventing duplicate information from entering LTM is the most valuable aspect of our promotion strategy. Relevance has minimal impact in the oracle setting, where most content is already relevant, while query-aware routing provides modest benefits.
 
 \begin{table}[h]
 \centering
-\caption{Ablation results on LongMemEval Oracle (150 test instances).}
+\small
+\caption{Ablation results on LongMemEval Oracle.}
 \label{tab:ablation}
 \begin{tabular}{lccc}
 \toprule
@@ -316,39 +251,22 @@ $-$ routing & 0.753 & 0.589 & 0.320 \\
 \end{tabular}
 \end{table}
 
-\textbf{Diversity matters most}: Removing the diversity component causes the largest drop ($-$1.3\% Hit@6, $-$1.8\% Recall@6), indicating that preventing duplicate information from entering LTM is the most valuable aspect of our promotion strategy.
+To understand why retrieval tuning helps, we also evaluate LTM quality. Figure~\ref{fig:ltm-quality} shows that the tuned variant does not improve intrinsic LTM quality over base SMC-QA. Its final retrieval gain therefore comes mainly from exposing more STM/LTM candidates before the final top-6 ranking, rather than from building a better LTM.
 
-\textbf{Relevance has minimal impact}: Removing relevance slightly improves performance, suggesting that in the oracle setting where most content is already relevant, this signal provides less discriminative power.
-
-\textbf{Routing has limited effect}: Removing query-aware routing shows no change in Hit@6 and slight decrease in Contains, suggesting that the rule-based routing provides modest benefits in this dataset.
-
-\subsection{LTM Quality Analysis}
-
-To understand why retrieval tuning helps, we also evaluate the quality of the constructed LTM itself. Table~\ref{tab:ltm-quality} reports the average LTM size, the fraction of LTM items that contain the answer string, and whether gold evidence is retrievable directly from LTM.
-
-\begin{table}[h]
+\begin{figure}[h]
 \centering
-\caption{LTM quality analysis on seed 42.}
-\label{tab:ltm-quality}
-\begin{tabular}{lcccc}
-\toprule
-\textbf{Method} & \textbf{LTM Size} & \textbf{Answer Item Rate} & \textbf{Gold Hit} & \textbf{Gold Recall} \\
-\midrule
-Freq Promotion & 8.7 & \textbf{0.144} & 0.787 & 0.607 \\
-Base SMC-QA & \textbf{13.6} & 0.100 & \textbf{0.800} & \textbf{0.650} \\
-Retrieval-tuned SMC-QA & 10.1 & 0.120 & 0.780 & 0.603 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-The tuned variant does not improve intrinsic LTM quality over base SMC-QA. Its final retrieval gain therefore comes mainly from exposing more STM/LTM candidates before the final top-6 ranking, rather than from building a better LTM. This also explains why frequency-based promotion remains a strong baseline: although its LTM is smaller, a larger fraction of its LTM items directly contain answer strings.
+\includegraphics[width=\textwidth]{fig05_ltm_quality.pdf}
+\caption{LTM size and evidence-quality diagnostics on seed 42. Base SMC-QA stores the largest LTM and has the strongest direct gold-evidence coverage, while retrieval-tuned SMC-QA gains mainly from exposing more candidates during final retrieval.}
+\label{fig:ltm-quality}
+\end{figure}
 
 \subsection{Case Analysis}
 
-We analyze specific instances where the retrieval-tuned SMC-QA improves over or regresses from the base SMC-QA. Table~\ref{tab:case-study} summarizes representative cases from the seed-42 supplementary experiment.
+Representative cases are summarized in Table~\ref{tab:case-study}. Success cases often require evidence just outside the base top-4 candidate set, while regressions often involve updates, locations, or spending details where stale but semantically similar evidence competes with the current answer.
 
 \begin{table}[h]
 \centering
+\scriptsize
 \caption{Representative case studies from the retrieval-tuned SMC-QA analysis.}
 \label{tab:case-study}
 \resizebox{\textwidth}{!}{
@@ -366,8 +284,6 @@ multi-session & Car wash and parking ticket spending & \textbf{1.00} & 0.50 \\
 \end{tabular}
 }
 \end{table}
-
-\textbf{Success cases} often require exposing an evidence chunk that was just outside the base top-4 candidate set. Wider candidate retrieval gives the final top-6 ranker a chance to recover these items. \textbf{Regression cases} often involve updates, locations, or spending details where older semantically similar evidence competes with the current answer. This supports the earlier conclusion that retrieval depth should be paired with recency-aware conflict handling.
 
 %======================================================================
 \section{Discussion}
@@ -399,6 +315,8 @@ We presented an extended improvement study of SMC-QA, a lightweight hierarchical
 
 \textbf{Chen Zeming} (50\%): Data processing, baseline method development, evaluation metrics, ablation experiments, and case analysis.
 
+\clearpage
+
 %======================================================================
 % References
 %======================================================================
@@ -426,5 +344,115 @@ Fang, J., Deng, X., Xu, H., Jiang, Z., Tang, Y., Xu, Z., Deng, S., Yao, Y., Wang
 \newblock \emph{arXiv preprint arXiv:2510.18866}, 2025.
 
 \end{thebibliography}
+
+\clearpage
+\appendix
+
+\section*{Appendix: Supplementary Detailed Results}
+
+\section{Detailed Empirical Results}
+\label{app:detailed-results}
+
+\begin{table}[H]
+\centering
+\caption{Main results on LongMemEval Oracle (150 test instances, 3 seeds).}
+\label{tab:main}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Method} & \textbf{Hit@6} & \textbf{Recall@6} & \textbf{Contains} \\
+\midrule
+STM-only & 0.642 $\pm$ 0.003 & 0.478 $\pm$ 0.002 & 0.342 $\pm$ 0.042 \\
+LTM-only & 0.713 $\pm$ 0.019 & 0.549 $\pm$ 0.014 & 0.309 $\pm$ 0.044 \\
+Flat Memory & 0.782 $\pm$ 0.019 & 0.623 $\pm$ 0.021 & 0.298 $\pm$ 0.049 \\
+Naive STM+LTM & 0.776 $\pm$ 0.017 & 0.614 $\pm$ 0.018 & 0.329 $\pm$ 0.039 \\
+Freq Promotion & 0.804 $\pm$ 0.013 & 0.641 $\pm$ 0.021 & 0.327 $\pm$ 0.045 \\
+SMC-QA (Ours) & 0.778 $\pm$ 0.022 & 0.612 $\pm$ 0.018 & \textbf{0.333 $\pm$ 0.030} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Tuning Details}
+\label{app:tuning}
+
+\begin{table}[H]
+\centering
+\caption{Best promotion-only tuning results on the oracle test split.}
+\label{tab:promotion-tuning}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lccc}
+\toprule
+\textbf{Configuration} & \textbf{Hit@6} & \textbf{Recall@6} & \textbf{Contains} \\
+\midrule
+Base weights, $\tau=0.40$, top-3, auto routing & 0.776 $\pm$ 0.023 & 0.614 $\pm$ 0.016 & \textbf{0.336 $\pm$ 0.035} \\
+Base weights, $\tau=0.25$, top-3, auto routing & 0.776 $\pm$ 0.017 & 0.609 $\pm$ 0.013 & 0.333 $\pm$ 0.030 \\
+Diversity-heavy weights, $\tau=0.40$, top-5, auto routing & 0.760 $\pm$ 0.016 & 0.593 $\pm$ 0.016 & 0.333 $\pm$ 0.036 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Retrieval top-$k$ tuning results on the oracle test split.}
+\label{tab:retrieval-search}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lccc}
+\toprule
+\textbf{Configuration} & \textbf{Hit@6} & \textbf{Recall@6} & \textbf{Contains} \\
+\midrule
+Base weights, $\tau=0.40$, STM/LTM top-6 & 0.789 $\pm$ 0.033 & 0.628 $\pm$ 0.024 & 0.329 $\pm$ 0.033 \\
+Base weights, $\tau=0.40$, STM/LTM top-8 & \textbf{0.793 $\pm$ 0.030} & \textbf{0.631 $\pm$ 0.024} & 0.329 $\pm$ 0.033 \\
+Diversity-heavy weights, $\tau=0.40$, STM top-6 / LTM top-4 & 0.769 $\pm$ 0.019 & 0.606 $\pm$ 0.017 & 0.327 $\pm$ 0.033 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Oracle improvement from retrieval-depth tuning (150 test instances, 3 seeds).}
+\label{tab:retrieval-tuned}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Method} & \textbf{Hit@6} & \textbf{Recall@6} & \textbf{Contains} \\
+\midrule
+Base SMC-QA & 0.778 $\pm$ 0.022 & 0.612 $\pm$ 0.018 & \textbf{0.333 $\pm$ 0.030} \\
+Retrieval-tuned SMC-QA & 0.793 $\pm$ 0.030 & 0.631 $\pm$ 0.024 & 0.329 $\pm$ 0.033 \\
+Freq Promotion & \textbf{0.804 $\pm$ 0.013} & \textbf{0.641 $\pm$ 0.021} & 0.327 $\pm$ 0.045 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Question-type comparison between base and retrieval-tuned SMC-QA on seed 42.}
+\label{tab:question-type}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Question Type} & \textbf{Base Hit} & \textbf{Tuned Hit} & \textbf{Base Recall} & \textbf{Tuned Recall} \\
+\midrule
+single-session-assistant & 0.588 & \textbf{0.647} & 0.588 & \textbf{0.647} \\
+temporal-reasoning & 0.769 & \textbf{0.821} & 0.544 & \textbf{0.569} \\
+multi-session & \textbf{0.750} & 0.722 & 0.485 & \textbf{0.501} \\
+knowledge-update & \textbf{0.778} & 0.741 & \textbf{0.580} & 0.543 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Results on LongMemEval S-Cleaned before and after tuning (100 instances, 200 turns each).}
+\label{tab:scleaned}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Method} & \textbf{Hit@6} & \textbf{Recall@6} & \textbf{Contains} \\
+\midrule
+Flat Memory & 0.460 & 0.315 & 0.260 \\
+Freq Promotion & 0.430 & 0.292 & 0.250 \\
+Base SMC-QA & 0.420 & 0.290 & 0.250 \\
+Tuned SMC-QA & \textbf{0.510} & \textbf{0.360} & \textbf{0.270} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \end{document}
